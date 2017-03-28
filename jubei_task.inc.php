@@ -420,7 +420,7 @@ if($model=='create_task'){
 		$uid = $_G['uid'];
 		$taskid = $_GET['taskid'];
 
-		$row = C::t("#jubei_task#jubei_task_complete")->fetch_all_taskid($taskid);
+		$row = C::t("#jubei_task#jubei_task_complete")->fetch_all_by_taskid($taskid);
 		// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt",print_r($row,true) ,FILE_APPEND);
 
 
