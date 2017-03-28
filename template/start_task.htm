@@ -1,0 +1,45 @@
+{template common/header}
+<div class="wp cl">
+<style type="text/css">
+.table  tr, th, td{margin: 10px;
+    padding: 10px;}
+</style>
+<div class="main" style="margin: 10px auto;">
+<div class="left"><link href="source/plugin/jubei_task/css/style.css" rel="stylesheet" type="text/css">
+{template jubei_task:nav}
+
+<div class="pta">
+<img style="float:left;" src="source/plugin/jubei_task/images/dq.png"><span style="float:left;">&nbsp;<a href="plugin.php?id=jubei_task">{lang jubei_task:createroom_1}</a> &gt;&gt; $home['username']{lang jubei_task:enterroom_1}</span>
+<span style="float:right;">&nbsp;<!--{if $_G[lj_tips]}-->$_G[lj_tips]<!--{else}-->$config['gg']<!--{/if}--></span><img style="float:right;" src="source/plugin/jubei_task/images/gg.png">
+</div>
+<div class="table">
+
+  <div style="padding: 0 10px 10px;">
+<table cellspacing="0" cellpadding="4" border="0" width="95%">
+<tr><form action="plugin.php?id=jubei_task&act=enterroom&cid={$_G['lj_cid']}"  name="addhome" method="post"><td>
+<input type="hidden" name="formhash" value="{FORMHASH}">
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{lang jubei_task:enterroom_2}$home['username']{$zuobi}</td></tr>
+<tr><td>{lang jubei_task:createroom_20}$home['guessremark']</td></tr>
+<tr><td>{lang jubei_task:createroom_3}{$_G['setting']['extcredits'][$config['credit']]['title']}:&nbsp;$home['guessmoney']{$_G['setting']['extcredits'][$config['credit']]['title']}</td></tr>
+<tr><td>{lang jubei_task:createroom_9}
+<input type="radio" name="myguess" value="0" checked>{lang jubei_task:createroom_10}<img src="source/plugin/jubei_task/images/fingerguess/0.gif" border=0 align=absmiddle width=30 height=30> 
+<input type="radio" name="myguess" value="1">{lang jubei_task:createroom_11}<img src="source/plugin/jubei_task/images/fingerguess/1.gif" border=0 align=absmiddle width=30 height=30> 
+<input type="radio" name="myguess" value="2">{lang jubei_task:createroom_12}<img src="source/plugin/jubei_task/images/fingerguess/2.gif" border=0 align=absmiddle width=30 height=30> 
+<input type="radio" name="myguess" value="3">{lang jubei_task:createroom_13}<img src="source/plugin/jubei_task/images/fingerguess/3.gif" border=0 align=absmiddle width=30 height=30> 
+</td></tr>
+<tr><td><input type="submit" name="submit"  value="{lang jubei_task:createroom_26}">&nbsp;&nbsp;&nbsp;&nbsp;
+<tr><td><hr size=1 color="{BORDERCOLOR}"></td></tr>
+<tr><td>
+<div class="notice" style="border:1px dashed #f60; background-color:#FFC">
+$roomtsy
+</div>
+</td></tr>
+</table></div>
+
+</div>
+</div>
+{template jubei_task:right}
+</div>
+</div>
+</div>
+{template common/footer}

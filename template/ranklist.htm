@@ -1,0 +1,53 @@
+{template common/header}
+<div class="wp cl">
+
+<div class="main">
+<div class="left"><link href="source/plugin/jubei_task/css/style.css" rel="stylesheet" type="text/css">
+{template jubei_task:nav}
+
+
+<div class="pta">
+<img style="float:left;" src="source/plugin/jubei_task/images/dq.png"><span style="float:left;">&nbsp;<a href="plugin.php?id=jubei_task">{lang jubei_task:createroom_1}</a> &gt;&gt; {lang jubei_task:ranklist_1}</span>
+<span style="float:right;">&nbsp;<!--{if $_G[lj_tips]}-->$_G[lj_tips]<!--{else}-->$config['gg']<!--{/if}--></span><img style="float:right;" src="source/plugin/jubei_task/images/gg.png">
+</div >
+<!--{if $_G['groupid']!=1}-->
+<div class="navcq">
+<ul>
+<li <!--{if !$_G['lj_do']||$_G['lj_do']=='lucky'}-->class="cur"<!--{/if}-->>
+<a href="plugin.php?id=jubei_task&act=ranklist&do=lucky">{lang jubei_task:ranklist_2}</a></li>
+<li <!--{if $_G['lj_do']=='recession'}-->class="cur"<!--{/if}-->>
+<a href="plugin.php?id=jubei_task&act=ranklist&do=recession">{lang jubei_task:ranklist_3}</a></li>
+</ul>
+</div>
+<!--{/if}-->
+<div class="table">
+<table width="720" cellspacing="1" cellpadding="0">
+  <tbody><tr align="center">
+    <td width="90" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:ranklist_4}</strong></td>
+    <td width="90" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:ranklist_5}</strong></td>
+    <td width="90" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:ranklist_6}{$_G['setting']['extcredits'][$config['credit']]['title']}{lang jubei_task:ranklist_7}</strong></td>
+  </tr>
+ <!--{loop $arr $k=>$log}-->
+    <tr align="center" height="28">
+    <td bgcolor="#fffac7" style="border:1px solid #ff9900;border-top:none">{eval echo $k+1;}</td>
+    <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">$log[username]</td>
+    <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">
+   $log[money]
+    
+</td>
+  </tr>
+ <!--{/loop}-->
+</tbody></table>
+<!--{if $_G['groupid']==1}-->
+<div class="pag">
+<div style="float:left;">&nbsp;&nbsp;{lang jubei_task:createroom_22}<span class="STYLE3">{eval echo $num}</span>{lang jubei_task:createroom_23}<!--£¬{lang jubei_task:createroom_24}&nbsp;<!--{if $_G['lj_page']}-->$_G['lj_page']<!--{else}-->1<!--{/if}-->&nbsp;{lang jubei_task:createroom_25}--></div>{$paging}
+
+</div>
+<!--{/if}-->
+</div>
+</div>
+{template jubei_task:right}
+</div>
+</div>
+</div>
+{template common/footer}

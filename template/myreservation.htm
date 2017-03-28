@@ -1,0 +1,59 @@
+{template common/header}
+<div class="wp cl">
+
+<div class="main" style="margin: 10px auto;">
+<div class="left"><link href="source/plugin/jubei_task/css/style.css" rel="stylesheet" type="text/css">
+{template jubei_task:nav}
+
+
+<div class="pta">
+<img style="float:left;" src="source/plugin/jubei_task/images/dq.png"><span style="float:left;">&nbsp;<a href="plugin.php?id=jubei_task">{lang jubei_task:plugin_name}</a> &gt;&gt; {lang jubei_task:nav_5}</span>
+<span style="float:right;">&nbsp;<!--{if $_G[lj_tips]}-->$_G[lj_tips]<!--{else}-->$config['gg']<!--{/if}--></span><img style="float:right;" src="source/plugin/jubei_task/images/gg.png">
+</div>
+<div class="table">
+<table width="720" cellspacing="1" cellpadding="0">
+  <tbody><tr align="center">
+    <td width="20%" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:myreservation_1}</strong></td>
+    <td width="20%" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:myreservation_2}</strong></td>
+    <td width="20%" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:myreservation_3}</strong></td>
+    <td width="20%" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:myreservation_4}</strong></td>
+    <td width="20%" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:index5}</strong></td>
+  </tr>
+  <!--{loop $homelist $home}-->
+    <tr align="center" height="28">
+    <td bgcolor="#fffac7" style="border:1px solid #ff9900;border-top:none">$home[begintime]</td>
+    <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">$home[pingtai_name]</td>
+    <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">$home[money]</td>
+    <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">$home[num]</td>
+
+    <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">
+   <!--{eval echo mb_substr($home[guessremark],0,12,$_G['charset']);}-->
+    <!--{if $home[type] == 1}-->
+    <a href="plugin.php?id=jubei_task&model=task_pro&taskid=$home[id]">{lang jubei_task:index6}</a>
+    <!--{else}-->
+    <a href="plugin.php?id=jubei_task&model=task_pro&taskid=$home[id]">{lang jubei_task:index6}</a>
+    <!--{/if}-->
+
+</td>
+
+</td>
+  </tr>
+ <!--{/loop}-->
+</tbody></table>
+<div class="pag">
+<div style="float:left;">&nbsp;&nbsp;{lang jubei_task:index7}<span class="STYLE3">{eval echo $num;}</span>{lang jubei_task:index8}<!--£¬{lang jubei_task:createroom_24}&nbsp;<!--{if $_G['task_page']}-->$_G['task_page']<!--{else}-->1<!--{/if}-->&nbsp;{lang jubei_task:createroom_25}--></div>{$paging}
+
+</div>
+</div>
+</div>
+<script type="text/javascript">
+function deleteproject(tid){
+    var url="$del"+tid;
+  showDialog("{lang jubei_task:index_14}",'confirm','',function(){location.href=url});
+}
+</script>
+{template jubei_task:right}
+</div>
+</div>
+</div>
+{template common/footer}

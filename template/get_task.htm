@@ -1,0 +1,126 @@
+{template common/header}
+<div class="wp cl">
+<div class="main" style="margin: 10px auto;">
+        <div class="left">
+            <link href="source/plugin/jubei_task/css/style.css" rel="stylesheet" type="text/css"> {template jubei_task:nav}
+            <div class="pta">
+                <img style="float:left;" src="source/plugin/jubei_task/images/dq.png"><span style="float:left;">&nbsp;<a href="plugin.php?id=jubei_task">{lang jubei_task:plugin_name}</a> &gt;&gt; {lang jubei_task:get_task1}</span>
+                <span style="float:right;">&nbsp;<!--{if $_G[lj_tips]}-->$_G[lj_tips]<!--{else}-->$config['gg']<!--{/if}--></span><img style="float:right;" src="source/plugin/jubei_task/images/gg.png">
+            </div>
+            <div class="table">
+                <div style="padding: 0 10px 10px;">
+                    <table cellspacing="0" cellpadding="4" border="0" width="95%">
+                        <tr style="height:32px;">
+                            <td>&nbsp;{lang jubei_task:index4}:
+                                $res[taskremark]</td>
+                        </tr>
+
+
+                        <tr style="height:32px;">
+                            <td>&nbsp;{lang jubei_task:create_4}:
+                                $res[pingtai_name]</td>
+                        </tr>
+
+<!--{loop $homelist $key $val}-->
+
+
+                        <tr style="height:32px;">
+                            <td>&nbsp;{lang jubei_task:create_5}
+                             {$key}
+                            
+                            
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{lang jubei_task:create_6}
+                                {$val}</td>
+                        </tr>
+
+
+<!--{/loop}-->
+
+
+                    </table>
+
+<form action="plugin.php?id=jubei_task&model=get_task" name="addhome" method="post">
+                    <table cellspacing="0" cellpadding="4" border="0" width="95%">
+                        <tr style="height:32px;">
+                            
+                                <td>
+                                    <input type="hidden" name="formhash" value="{FORMHASH}">
+                                    <input type="hidden" name="taskid" value="{$taskid}">
+                                </td>
+                        </tr>
+
+
+                        <tr style="height:32px;">
+                            <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:get_task2}
+                                <input type="text" id="qq" size="20" name="qq" value=""></td>
+                        </tr>
+
+                        <tr style="height:32px;"  class="array">
+                            <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:create_5}
+                                <input type="text" id="money" size="20" name="money" value=""></td>
+                            <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:create_6}
+                                <input type="text" id="num" size="20" name="num" value=""></td>
+                                <td>
+                                <span id="add" onclick="myFunction()">{lang jubei_task:get_task5}</span>
+                                    
+                                </td>
+                        </tr>
+
+
+                        <script type="text/javascript">
+                            function myFunction() {
+                                var arrays = document.getElementsByClassName("array")
+                                var length = arrays.length;
+                                var node = arrays[0];
+                                var cNode = node.cloneNode(true);
+                                var cinputs = cNode.getElementsByTagName('input')
+                                for (var i = 0; i < cinputs.length; i++) {
+                                    cinputs[i].name = cinputs[i].name + '' + length
+                                }
+                                var lasttd = cNode.children[cNode.children.length-1]
+
+                                    lasttd.parentNode.removeChild(lasttd);
+                                // node.parentNode.appendChild(cNode);
+                                var before = document.getElementById('before');
+                                node.parentNode.insertBefore(cNode, before);
+                            }
+
+                            function validate_check(){
+
+                                if (document.getElementById("qq").value == '') {
+                                    alert("请填写QQ！");
+                                    return false;
+                                }
+                                if (document.getElementById("money").value == '') {
+                                    alert("请填写档位！");
+                                    return false;
+                                }
+                                if (document.getElementById("num").value == '') {
+                                    alert("请填写名额！");
+                                    return false;
+                                }                    
+                            }
+
+
+                        </script>
+                        <tr style="height:30px;" id="before">
+                            <td><input type="submit" name="get_task_submit" onclick="return validate_check();" value="提交">&nbsp;&nbsp;&nbsp;&nbsp;
+                            </td>
+                        </tr>
+                    </table>
+                    </form>
+                </div>
+                        <tr>
+                            <td>
+                                <div class="notice" style="border:1px dashed #f60; background-color:#FFC">
+                                {lang jubei_task:yuyue_zhuyi}
+                                    <br>                                </div>
+                            </td>
+                        </tr>
+            </div>
+        </div>
+        {template jubei_task:right}
+    </div>
+</div>
+</div>
+{template common/footer}

@@ -1,0 +1,56 @@
+{template common/header}
+<div class="wp cl">
+
+<div class="main">
+<div class="left"><link href="source/plugin/jubei_task/css/style.css" rel="stylesheet" type="text/css">
+{template jubei_task:nav}
+
+
+<div class="pta">
+<img style="float:left;" src="source/plugin/jubei_task/images/dq.png"><span style="float:left;">&nbsp;<a href="plugin.php?id=jubei_task">{lang jubei_task:createroom_1}</a> &gt;&gt; {lang jubei_task:loglist_1}</span>
+<span style="float:right;">&nbsp;<!--{if $_G[lj_tips]}-->$_G[lj_tips]<!--{else}-->$config['gg']<!--{/if}--></span><img style="float:right;" src="source/plugin/jubei_task/images/gg.png">
+</div>
+<div class="table">
+<table width="720" cellspacing="1" cellpadding="0">
+  <tbody><tr align="center">
+    <td width="90" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:index_2}</strong></td>
+    <td width="90" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:index_3}</strong></td>
+    <td width="90" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:index_4}</strong></td>
+    <td width="90" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:index_5}</strong></td>
+    <td width="90" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:index_6}</strong></td>
+  </tr>
+  <!--{loop $homelist $home}-->
+    <tr align="center" height="28">
+    <td bgcolor="#fffac7" style="border:1px solid #ff9900;border-top:none">$home[id]</td>
+    <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">$home[username]</td>
+    <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">
+   $home[guessremark]
+    
+</td>
+    <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none"><!--{if $home[guesstype]==2}-->{lang jubei_task:index_7}$home[yourname]<!--{elseif $home[guesstype]==0}-->{lang jubei_task:index_8}
+<!--{else}-->{lang jubei_task:index_9}
+<!--{/if}--></td>
+   
+    <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none;border-right:none">
+<span class="link"><!--{if $home[yess]}-->
+<a href="plugin.php?id=jubei_task&act=enterroom&cid=$home[id]">{lang jubei_task:index_10}</a>
+<!--{elseif $home[result]}-->
+<span onmouseover="showMenu(this.id);" id="viewmsg_{$home[id]}" initialized="true"><a class="red" href="javascript:;">{lang jubei_task:index_12}</a></span>
+<div style="border: 1px solid rgb(204, 204, 204); background-color: rgb(242, 242, 242); padding: 10px; text-align: left; position: absolute; z-index: 301; left: 691.5px; top: 403.5px; display: none;" id="viewmsg_{$home[id]}_menu">$home[result]</div>
+<!--{else}-->{lang jubei_task:index_13}
+<!--{/if}--></span>
+</td>
+  </tr>
+ <!--{/loop}-->
+</tbody></table>
+<div class="pag">
+<div style="float:left;">&nbsp;&nbsp;{lang jubei_task:createroom_22}<span class="STYLE3">{eval echo $num}</span>{lang jubei_task:createroom_23}<!--£¬{lang jubei_task:createroom_24}&nbsp;<!--{if $_G['lj_page']}-->$_G['lj_page']<!--{else}-->1<!--{/if}-->&nbsp;{lang jubei_task:createroom_25}--></div>{$paging}
+
+</div>
+</div>
+</div>
+{template jubei_task:right}
+</div>
+</div>
+</div>
+{template common/footer}

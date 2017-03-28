@@ -1,0 +1,15 @@
+<div class="navcq">
+<ul>
+<li <!--{if !$model||$model=='task_list'}-->class="cur"<!--{/if}-->>
+<a href="plugin.php?id=jubei_task">{lang jubei_task:nav_1}</a></li>
+<li <!--{if $model=='create_task'}-->class="cur"<!--{/if}-->>
+<a href="plugin.php?id=jubei_task&model=create_task">{lang jubei_task:nav_2}</a></li>
+<li <!--{if $model=='myrelease'}-->class="cur"<!--{/if}-->>
+<a href="plugin.php?id=jubei_task&model=myrelease">{lang jubei_task:nav_3}</a></li>
+<li <!--{if $model=='mycomplete'}-->class="cur"<!--{/if}-->>
+<a  href="plugin.php?id=jubei_task&model=mycomplete">{lang jubei_task:nav_4}</a></li>
+<li <!--{if $model=='myreservation'}-->class="cur"<!--{/if}-->>
+<a href="plugin.php?id=jubei_task&model=myreservation">{lang jubei_task:nav_5}</a></li>
+</ul>
+
+</div>
