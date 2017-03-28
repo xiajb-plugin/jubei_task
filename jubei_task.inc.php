@@ -63,7 +63,7 @@ if($model=='create_task'){
 
 
 		# 以json的方式存储
-		file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", print_r($new_data,true),FILE_APPEND);
+		// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", print_r($new_data,true),FILE_APPEND);
 
 		$begintime = date("m-d H:i",time());
 		$insert_data = array(
@@ -96,7 +96,7 @@ if($model=='create_task'){
 	$res = C::t("#jubei_task#jubei_task_list")->fetch_by_id($taskid);
 	$homelist = json_decode($res['list'],true);
 	$lenght = count($homelist);
-	file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt",print_r($homelist,true) ,FILE_APPEND);
+	// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt",print_r($homelist,true) ,FILE_APPEND);
 
 	include template('jubei_task:task_pro');
 
@@ -190,7 +190,7 @@ if($model=='create_task'){
 		unset($data['taskid'],$data['zfb'],$data['qq'],$data['other'],$data['formhash'],$data['submit_task']);
 
 		// $arr = json_encode($data);
-		file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", count($data),FILE_APPEND);
+		// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", count($data),FILE_APPEND);
 
 		$lenght = count($data)/3;
 
@@ -345,7 +345,7 @@ if($model=='create_task'){
 							$shengyu_num = (int)$value - (int)$num;
 
 							$task_res['list'][$money] = $shengyu_num;
-							file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt",$shengyu_num.'-'.$money.'-'.$value,FILE_APPEND);
+							// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt",$shengyu_num.'-'.$money.'-'.$value,FILE_APPEND);
 						}else{
 							showmessage(lang('plugin/jubei_task','shengyu_num_error'),'plugin.php?id=jubei_task&model=get_task&taskid='.$taskid);
 							exit;
