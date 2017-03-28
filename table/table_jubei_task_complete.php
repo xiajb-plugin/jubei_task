@@ -61,6 +61,10 @@ class table_jubei_task_complete extends discuz_table
 		return DB::fetch_all("select *  from ".DB::table($this->_table)." where taskid=".$taskid." order by id desc limit $start,$limit");
 	}
 
+	public function fetch_all_taskid($taskid){
+		return DB::fetch_all("select *  from ".DB::table($this->_table)." where taskid=".$taskid);
+	}
+
 	// public function count_guessmoney_by_uid($start,$perpage,$count){
 	// 	return DB::fetch_all("select username,sum(guessmoney) money  from ".DB::table($this->_table)." group by username order by money desc  limit $start,$perpage");
 	// }
