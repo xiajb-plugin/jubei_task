@@ -440,7 +440,7 @@ if($model=='create_task'){
 		$filename = "交单信息表" . date('Y-m-d', time());  
 		header("Content-Type: application/csv");  
 		header("Content-Disposition: attachment; filename=$filename.csv");  
-		$strUsersData =iconv('utf-8','gb2312',$strUsersData);//转换编码
+		
 		//输出表头  
 		$table_head = array('id','姓名','电话','档位', '支付宝', 'qq','备注');
 		$table_head = mb_convert_encoding($table_head,'gb2312','utf-8');  
@@ -448,7 +448,7 @@ if($model=='create_task'){
 
 		for ($i=0; $i < count($row); $i++) { 
 			$e = array(($i+1),$row[$i]['name'],$row[$i]['tel'],$row[$i]['money'],$row[$i]['zfb'],$row[$i]['qq'],$row[$i]['other']);  
-			$e = mb_convert_encoding($e,'gb2312','utf-8');
+			
 			fputcsv($output, array_values($e));
 		}
 		fclose($output) or die("can't close php://output");  
