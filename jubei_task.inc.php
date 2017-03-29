@@ -22,6 +22,7 @@ $gold = $_G['cache']['plugin']['jubei_task']['gold'];
 $mygold = C::t("#jubei_task#jubei_task_list")->fetch_extcredits($_G['uid']);
 
 
+
 # 创建任务
 if($model=='create_task'){
 	if (in_array($_G['groupid'], unserialize($_G['cache']['plugin']['jubei_task']['create_group']))) {
@@ -424,6 +425,11 @@ if($model=='create_task'){
 }else if($model=='down'){
 		$uid = $_G['uid'];
 		$taskid = $_GET['taskid'];
+		if (empty($taskid)) {
+			showmessage(lang('plugin/jubei_task','not_data'),'plugin.php?id=jubei_task&model=myreservation');
+			exit;
+
+		}
 
 		$row = C::t("#jubei_task#jubei_task_complete")->fetch_all_taskid($taskid);
 		// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt",print_r($row,true) ,FILE_APPEND);

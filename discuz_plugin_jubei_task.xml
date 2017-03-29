@@ -239,6 +239,7 @@
 				<item id="jiaodanjilv"><![CDATA[交单记录]]></item>
 				<item id="jiaodan"><![CDATA[【交单】]]></item>
 				<item id="down"><![CDATA[【导出数据】]]></item>
+				<item id="not_data"><![CDATA[没有可下载的数据！]]></item>
 				<item id="have_signed"><![CDATA[已报名，请勿重复报名！]]></item>
 				<item id="sign_not_subscribe"><![CDATA[关注后才能报名！]]></item>
 				<item id="sign_number"><![CDATA[参赛人数]]></item>

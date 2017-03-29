@@ -1,5 +1,54 @@
 {template common/header}
 <div class="wp cl">
+
+                        <script type="text/javascript">
+                            function myFunction() {
+                                var arrays = document.getElementsByClassName("array")
+                                var length = arrays.length;
+                                var node = arrays[0];
+                                var cNode = node.cloneNode(true);
+                                var cinputs = cNode.getElementsByTagName('input')
+                                for (var i = 0; i < cinputs.length; i++) {
+                                    cinputs[i].name = cinputs[i].name + '' + length
+                                }
+                                var lasttd = cNode.children[cNode.children.length-1]
+
+                                    lasttd.parentNode.removeChild(lasttd);
+                                // node.parentNode.appendChild(cNode);
+                                var before = document.getElementById('before');
+                                node.parentNode.insertBefore(cNode, before);
+                            }
+                            function validate_check(){
+
+                                if (document.getElementById("qq").value == '') {
+                                    alert("请填写QQ！");
+                                    return false;
+                                }
+                                if (document.getElementById("money").value == '') {
+                                    alert("请填写档位！");
+                                    return false;
+                                }
+                                if (document.getElementById("name").value == '') {
+                                    alert("请填写名字！");
+                                    return false;
+                                } 
+                                if (document.getElementById("zfb").value == '') {
+                                    alert("请填写支付宝！");
+                                    return false;
+                                }      
+                                var phone = document.getElementById('phone').value;
+                                
+                                if(!(/^1(3|4|5|7|8)\d{9}$/.test(trim(phone)))){ 
+                                    alert("手机号码有误，请重填");  
+                                    return false; 
+                                } 
+                            }
+
+                            function trim(str){ //删除左右两端的空格
+                        　　     return str.replace(/(^\s*)|(\s*$)/g, "");
+                        　　 }
+
+                        </script>
 <div class="main" style="margin: 10px auto;">
         <div class="left">
             <link href="source/plugin/jubei_task/css/style.css" rel="stylesheet" type="text/css"> {template jubei_task:nav}
@@ -49,55 +98,6 @@
                                 </td>
                         </tr>
 
-
-
-
-
-
-                        <script type="text/javascript">
-                            function myFunction() {
-                                var arrays = document.getElementsByClassName("array")
-                                var length = arrays.length;
-                                var node = arrays[0];
-                                var cNode = node.cloneNode(true);
-                                var cinputs = cNode.getElementsByTagName('input')
-                                for (var i = 0; i < cinputs.length; i++) {
-                                    cinputs[i].name = cinputs[i].name + '' + length
-                                }
-                                var lasttd = cNode.children[cNode.children.length-1]
-
-                                    lasttd.parentNode.removeChild(lasttd);
-                                // node.parentNode.appendChild(cNode);
-                                var before = document.getElementById('before');
-                                node.parentNode.insertBefore(cNode, before);
-                            }
-                            function validate_check(){
-
-                                if (document.getElementById("qq").value == '') {
-                                    alert("请填写QQ！");
-                                    return false;
-                                }
-                                if (document.getElementById("money").value == '') {
-                                    alert("请填写档位！");
-                                    return false;
-                                }
-                                if (document.getElementById("name").value == '') {
-                                    alert("请填写名字！");
-                                    return false;
-                                } 
-                                if (document.getElementById("zfb").value == '') {
-                                    alert("请填写支付宝！");
-                                    return false;
-                                }      
-                                var tel = document.getElementById('tel').value;
-                                if(!(/^1(3|4|5|7|8)\d{9}$/.test(tel))){ 
-                                    alert("手机号码有误，请重填");  
-                                    return false; 
-                                } 
-
-                            }
-                           
-                        </script>
                         <tr style="height:32px;">
                             <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:zfb}
                                 <input type="text" id="zfb" size="20" name="zfb" value=""></td>
@@ -113,9 +113,10 @@
 
                         <tr style="height:32px;"  class="array">
                             <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:name}
-                                <input type="text" id="tel" size="20" name="tel" value=""></td>
-                            <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:tel}
                                 <input type="text" id="name" size="20" name="name" value=""></td>
+                            <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:tel}
+                                
+                                <input type="text" id="phone" size="20" name="tel" value=""></td>
                             <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:money}
                                 <input type="text" id="money" size="20" name="money" value=""></td>
                                 <td>
