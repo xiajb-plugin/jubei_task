@@ -443,11 +443,12 @@ if($model=='create_task'){
 		
 		//输出表头  
 		$table_head = array('id','姓名','电话','档位', '支付宝', 'qq','备注');
-		$table_head = mb_convert_encoding($table_head,'gb2312','utf-8');  
+		fwrite($file, chr(0XEF) . chr(0xBB) . chr(0XBF));
 		fputcsv($output, $table_head);  
 
 		for ($i=0; $i < count($row); $i++) { 
 			$e = array(($i+1),$row[$i]['name'],$row[$i]['tel'],$row[$i]['money'],$row[$i]['zfb'],$row[$i]['qq'],$row[$i]['other']);  
+			chr(255).chr(254);
 			
 			fputcsv($output, array_values($e));
 		}
