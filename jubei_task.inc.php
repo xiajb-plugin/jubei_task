@@ -13,7 +13,7 @@ global $_G;
 $uid = $_G['uid'];
 $complete_num=C::t("#jubei_task#jubei_task_complete")->count_by_uid($uid);
 
-$perpage=3;
+$perpage=10;
 $model = daddslashes($_GET['model']);
 $complete_group = $_G['cache']['plugin']['jubei_task']['complete_group'];
 $gold = $_G['cache']['plugin']['jubei_task']['gold'];
