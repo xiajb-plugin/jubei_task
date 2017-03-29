@@ -25,13 +25,18 @@ $mygold = C::t("#jubei_task#jubei_task_list")->fetch_extcredits($_G['uid']);
 # 创建任务
 if($model=='create_task'){
 	if (in_array($_G['groupid'], unserialize($_G['cache']['plugin']['jubei_task']['create_group']))) {
-                // file_put_contents('/home/tanxu/www/32utf8/source/plugin/jubei_task/data.txt', $_G['groupid']);
-                // file_put_contents("/home/tanxu/www/32utf8/source/plugin/jubei_task/data.txt", "asdasd", FILE_APPEND);
 		# 允许推单
 		$is_true = 1;
-            }else{
-            		$is_true = 0;
-            }
+    }else{
+    	$is_true = 0;
+    }
+
+    if ($mygold < $gold) {
+    	# 金币不足，不能推单
+    	$is_gold = 0;
+    }else{
+    	$is_gold =1;
+    }
 	if(submitcheck('create_submit')){
 		$get_data = file_get_contents("php://input");
 		parse_str($get_data, $data);

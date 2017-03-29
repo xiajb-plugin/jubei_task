@@ -89,11 +89,14 @@
                                     alert("请填写支付宝！");
                                     return false;
                                 }      
-                                if (document.getElementById("tel").value == '') {
-                                    alert("请填写电话！");
-                                    return false;
-                                }      
+                                var tel = document.getElementById('tel').value;
+                                if(!(/^1(3|4|5|7|8)\d{9}$/.test(tel))){ 
+                                    alert("手机号码有误，请重填");  
+                                    return false; 
+                                } 
+
                             }
+                           
                         </script>
                         <tr style="height:32px;">
                             <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:zfb}
@@ -125,7 +128,7 @@
                                 <input type="text" size="20" name="other" value=""></td>
                         </tr>
                         <tr style="height:30px;" >
-                             <td><input type="submit" name="submit_task" value="提交">&nbsp;&nbsp;&nbsp;&nbsp;
+                             <td><input type="submit" name="submit_task" onclick="return validate_check();" value="提交">&nbsp;&nbsp;&nbsp;&nbsp;
                         </td></tr>
                     </table>
                     </form>

@@ -27,12 +27,9 @@
     <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">$home[num]</td>
 
     <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">
-   <!--{eval echo mb_substr($home[guessremark],0,12,$_G['charset']);}-->
-    <!--{if $home[type] == 1}-->
-    <a href="plugin.php?id=jubei_task&model=task_pro&taskid=$home[id]">{lang jubei_task:index6}</a>
-    <!--{else}-->
-    <a href="plugin.php?id=jubei_task&model=task_pro&taskid=$home[id]">{lang jubei_task:index6}</a>
-    <!--{/if}-->
+
+    <a href="plugin.php?id=jubei_task&model=submit_task&taskid=$home[id]">{lang jubei_task:jiaodan}</a>
+
 
 </td>
 

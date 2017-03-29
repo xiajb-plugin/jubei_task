@@ -208,6 +208,8 @@
 				<item id="index6"><![CDATA[【详情】]]></item>
 				<item id="index7"><![CDATA[总共]]></item>
 				<item id="index8"><![CDATA[条记录]]></item>
+				<item id="index9"><![CDATA[【限量单-预约】]]></item>
+				<item id="index10"><![CDATA[【非限量单-交单】]]></item>
 				<item id="get_task1"><![CDATA[我要预约]]></item>
 				<item id="get_task2"><![CDATA[联系QQ]]></item>
 				<item id="get_task3"><![CDATA[档位]]></item>
@@ -235,6 +237,7 @@
 					2、请留下真实qq，方便单子发布人及时联系你，否则停单后做单无效，后果自负</br>
 					3、点击旁边的增加其他档位按钮可增加其他档位以及名额</br>]]></item>
 				<item id="jiaodanjilv"><![CDATA[交单记录]]></item>
+				<item id="jiaodan"><![CDATA[【交单】]]></item>
 				<item id="down"><![CDATA[【导出数据】]]></item>
 				<item id="have_signed"><![CDATA[已报名，请勿重复报名！]]></item>
 				<item id="sign_not_subscribe"><![CDATA[关注后才能报名！]]></item>
