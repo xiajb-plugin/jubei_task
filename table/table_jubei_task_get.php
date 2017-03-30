@@ -15,7 +15,7 @@ class table_jubei_task_get extends discuz_table
 	public function __construct() {
 
 		$this->_table = 'jubei_task_get';
-		$this->_pk    = 'uid';
+		$this->_pk    = 'id';
 
 		parent::__construct();
 	}

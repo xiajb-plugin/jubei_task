@@ -1,13 +1,24 @@
 <div class="right">
 
-<div class="right_1">
+<div class="right_1" style="height: 160px;">
 <div style="margin-left:50px;"><!--{eval echo avatar($_G['uid'],'small');}--></div>
-<img src="source/plugin/jubei_task/images/left_4.gif">&nbsp;&nbsp;{lang jubei_task:right_1}{$_G['username']}<br>
-<img src="source/plugin/jubei_task/images/left_4.gif">&nbsp;&nbsp;{lang jubei_task:right_2}<span class="STYLE3">{$_G[member][credits]}</span>
-<br><img src="source/plugin/jubei_task/images/left_4.gif">&nbsp;&nbsp;{lang jubei_task:right_3}{$_G['setting']['extcredits'][$config['credit']]['title']}&nbsp;:&nbsp;<span class="STYLE3">{$mycredit}</span>
-<br><img src="source/plugin/jubei_task/images/left_4.gif">&nbsp;&nbsp;{lang jubei_task:right_4}
-<span class="STYLE4"><strong>{$complete_num}</strong></span></div>
+<img src="source/plugin/jubei_task/images/left_4.gif">&nbsp;&nbsp;{lang jubei_task:right_1}{$_G['username']}
 
+<br><img src="source/plugin/jubei_task/images/left_4.gif">&nbsp;&nbsp;{lang jubei_task:right_3}{$_G['setting']['extcredits'][$config['credit']]['title']}&nbsp;:&nbsp;<span class="STYLE3">{$mygold}</span>
+<br><img src="source/plugin/jubei_task/images/left_4.gif">&nbsp;&nbsp;{lang jubei_task:right_4}
+
+
+
+
+<span class="STYLE4"><strong>{$complete_num}</strong></span><br>
+<!--{if !(empty($my_message['zfb']) || empty($my_message['qq']))}-->
+<img src="source/plugin/jubei_task/images/left_4.gif">&nbsp;&nbsp;{$my_message['zfb']}<br>
+<img src="source/plugin/jubei_task/images/left_4.gif">&nbsp;&nbsp;{$my_message['qq']}<br>
+
+<!--{else}-->
+    &nbsp;&nbsp;<a style="color:red;" href="plugin.php?id=jubei_task&model=mymessage">{lang jubei_task:wanshanziliao}</a><br>
+<!--{/if}-->
+</div>
 <div class="right_2">
 <ul>
 <!--{loop $new $user}-->

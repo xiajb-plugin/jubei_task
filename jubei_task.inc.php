@@ -13,6 +13,8 @@ global $_G;
 $uid = $_G['uid'];
 $complete_num=C::t("#jubei_task#jubei_task_complete")->count_by_uid($uid);
 
+$my_message = C::t("#jubei_task#jubei_task_message")->fetch_by_uid($uid);
+
 $perpage=10;
 $model = daddslashes($_GET['model']);
 $complete_group = $_G['cache']['plugin']['jubei_task']['complete_group'];
@@ -91,7 +93,29 @@ if($model=='create_task'){
 
 	}
 
+}else if($model=='mymessage'){
+		
+	if(submitcheck('submit_message')){
+		$uid = $_G['uid'];
+		$res = C::t("#jubei_task#jubei_task_message")->fetch_by_uid($uid);
+		if (empty($res)) {
+			$zfb = $_POST['zfb'];
+			$qq = $_POST['qq'];
+			$data = array("zfb"=>$zfb,"qq"=>$qq,"uid"=>$_G['uid'],"username"=>$_G['username']);
+			C::t("#jubei_task#jubei_task_message")->insert($data);
+		}else{
+			$zfb = $_POST['zfb'];
+			$qq = $_POST['qq'];
+			$data = array("zfb"=>$zfb,"qq"=>$qq,"uid"=>$_G['uid'],"username"=>$_G['username']);
+			C::t("#jubei_task#jubei_task_message")->update_by_id($data);
+		}
+		showmessage(lang('plugin/jubei_task','message_success'),'plugin.php?id=jubei_task');
+		exit;
 
+
+	}
+
+	include template('jubei_task:mymessage');
 
 
 # 任务详情
@@ -243,6 +267,8 @@ if($model=='create_task'){
 			exit;
 	}else{
 		# 交单界面
+
+		$message = C::t("#jubei_task#jubei_task_message")->fetch_by_uid($_G['uid']);
 		$taskid = $_GET['taskid'];
 		$res = C::t("#jubei_task#jubei_task_list")->fetch_by_id($taskid);
 		$homelist = json_decode($res['list'],true);

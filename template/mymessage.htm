@@ -1,0 +1,69 @@
+{template common/header}
+<div class="wp cl">
+<div class="main" style="margin: 10px auto;">
+        <div class="left">
+            <link href="source/plugin/jubei_task/css/style.css" rel="stylesheet" type="text/css"> {template jubei_task:nav}
+            <div class="pta">
+                <img style="float:left;" src="source/plugin/jubei_task/images/dq.png"><span style="float:left;">&nbsp;<a href="plugin.php?id=jubei_task">{lang jubei_task:plugin_name}</a> &gt;&gt; {lang jubei_task:my_message}</span>
+                <span style="float:right;">&nbsp;<!--{if $_G[lj_tips]}-->$_G[lj_tips]<!--{else}-->$config['gg']<!--{/if}--></span><img style="float:right;" src="source/plugin/jubei_task/images/gg.png">
+            </div>
+<div class="table">
+
+    <div style="padding: 0 10px 10px;">
+     <form action="plugin.php?id=jubei_task&model=mymessage" name="addhome" method="post">
+        <table cellspacing="0" cellpadding="4" border="0" width="95%">
+            <tr style="height:32px;">
+               
+                    <td>
+                        <input type="hidden" name="formhash" value="{FORMHASH}">
+                    </td>
+            </tr>
+
+
+            <tr style="height:32px;">
+                <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:zfb}
+                    <input type="text" id="zfb" size="20" name="zfb" value="{$res['zfb']}"></td>
+            </tr>
+
+            <tr style="height:32px;">
+                <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:qq}
+                    <input type="text" id="qq" size="20" name="qq" value="{$res['qq']}"></td>
+            </tr>
+    <script type="text/javascript">
+                function validate_check(){
+
+                    if (document.getElementById("zfb").value == '') {
+                        alert("请填写支付宝！");
+                        return false;
+                    }
+                    if (document.getElementById("qq").value == '') {
+                        alert("请填写qq！");
+                        return false;
+                    }
+                   
+                }
+    </script>
+
+
+            <tr style="height:30px;" id="before">
+                <td><input type="submit" name="submit_message" onclick="return validate_check();" value="提交">&nbsp;&nbsp;&nbsp;&nbsp;
+                </td>
+            </tr>
+        </table>
+        </form>
+                </div>
+                        <tr>
+                            <td>
+                                <div class="notice" style="border:1px dashed #f60; background-color:#FFC">
+                                {lang jubei_task:zhuyi}
+                                    <br>                                </div>
+                            </td>
+                        </tr>
+            </div>
+
+        </div>
+        {template jubei_task:right}
+    </div>
+</div>
+</div>
+{template common/footer}

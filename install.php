@@ -55,6 +55,18 @@ CREATE TABLE IF NOT EXISTS `pre_jubei_task_complete` (
   PRIMARY KEY (`id`),
   KEY `taskid` (`taskid`)
 );
+
+drop table IF EXISTS `pre_jubei_task_message`;
+CREATE TABLE IF NOT EXISTS `pre_jubei_task_message` (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `uid` mediumint(8) unsigned NOT NULL default '0',
+  `username` varchar(255) NOT NULL,
+  `qq` varchar(16) NOT NULL,    
+  `zfb` varchar(32) NOT NULL,
+
+  PRIMARY KEY (`id`)
+);
+
 EOF;
 
 runquery($sql);
