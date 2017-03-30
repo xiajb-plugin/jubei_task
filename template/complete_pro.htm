@@ -30,9 +30,9 @@
     <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">
    <!--{eval echo mb_substr($home[guessremark],0,12,$_G['charset']);}-->
     <!--{if $home[type] == 1}-->
-    <a href="plugin.php?id=jubei_task&model=task_pro&taskid=$home[id]">{lang jubei_task:index6}</a>
+    <a href="plugin.php?id=jubei_task&model=task_pro&taskid=$home[taskid]">{lang jubei_task:index6}</a>
     <!--{else}-->
-    <a href="plugin.php?id=jubei_task&model=task_pro&taskid=$home[id]">{lang jubei_task:index6}</a>
+    <a href="plugin.php?id=jubei_task&model=task_pro&taskid=$home[taskid]">{lang jubei_task:index6}</a>
     <!--{/if}-->
 
 </td>
@@ -56,7 +56,7 @@
   cursor:pointer;
     }
     </style>
-<div class="down_button" style="float:right;"><a href="plugin.php?id=jubei_task&model=down&taskid=$home[id]">{lang jubei_task:down}</div>{$paging}
+<div class="down_button" style="float:right;"><a href="plugin.php?id=jubei_task&model=down&taskid=$taskid">{lang jubei_task:down}</div>{$paging}
 </a></div>
 </div>
 </div>
