@@ -13,11 +13,12 @@
 <div class="table">
 <table width="720" cellspacing="1" cellpadding="0">
   <tbody><tr align="center">
-    <td width="20%" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:index1}</strong></td>
-    <td width="20%" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:index2}</strong></td>
-    <td width="20%" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:index3}</strong></td>
-    <td width="20%" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:index4}</strong></td>
-    <td width="20%" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:index5}</strong></td>
+    <td width="16.6%" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:index1}</strong></td>
+    <td width="16.6%" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:index2}</strong></td>
+    <td width="16.6%" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:index3}</strong></td>
+    <td width="16.6%" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:index4}</strong></td>
+    <td width="16.6%" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:zhuangtai}</strong></td>
+    <td width="16.6%" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:index5}</strong></td>
   </tr>
   <!--{loop $homelist $home}-->
     <tr align="center" height="28">
@@ -25,17 +26,19 @@
     <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">$home[username]</td>
     <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">$home[pingtai_name]</td>
     <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">$home[taskremark]</td>
-
+    <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">
+    <!--{if $home[status]==1}--><a href="javascript:void(0)" onclick="deleteproject({$home[id]})">{lang jubei_task:jinxingzhong}</a>
+    <!--{elseif $home[status]==0}-->
+    <span>{lang jubei_task:jieshu}</span>
+      <!--{elseif $home[status]==2}-->
+    <span>{lang jubei_task:zanting}</span>
+    <!--{/if}-->
+    </td>
     <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">
 
     <a href="plugin.php?id=jubei_task&model=complete_pro&taskid=$home[id]">{lang jubei_task:myrelease_1}</a>
 
-    <a href="plugin.php?id=jubei_task&model=reservation_pro&taskid=$home[id]">{lang jubei_task:myrelease_2}</a>
-
-
-</td>
-
-</td>
+    <a href="plugin.php?id=jubei_task&model=reservation_pro&taskid=$home[id]">{lang jubei_task:myrelease_2}</a></td>
   </tr>
  <!--{/loop}-->
 </tbody></table>
@@ -47,8 +50,8 @@
 </div>
 <script type="text/javascript">
 function deleteproject(tid){
-    var url="$del"+tid;
-  showDialog("{lang jubei_task:index_14}",'confirm','',function(){location.href=url});
+    // var url="$del"+tid;
+  showDialog("{lang jubei_task:zanting_1}",'confirm','',function(){location.href="plugin.php?id=jubei_task"+"&model=zanting"+"&taskid="+tid});
 }
 </script>
 {template jubei_task:right}

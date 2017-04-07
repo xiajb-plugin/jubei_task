@@ -90,6 +90,11 @@ class table_jubei_task_list extends discuz_table
     }
 
 
+	#更新
+	public function update_by_uid_taskid($data,$uid,$taskid) {
+        return DB::update($this->_table,$data, 'id='.$taskid.' and uid='.$uid);
+    }
+
 }
 
 

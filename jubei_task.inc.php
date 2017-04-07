@@ -40,54 +40,59 @@ if($model=='create_task'){
     }else{
     	$is_gold =1;
     }
-	if(submitcheck('create_submit')){
-		$get_data = file_get_contents("php://input");
-		parse_str($get_data, $data);
+    // if (($is_true ==1) && ($is_gold== 1)) {
+    	# code...
 
-		$message = $data['message'];
-		$pingtai_name = $data['pingtai_name'];
-		$type = $data['type'];
+		if(submitcheck('create_submit') && $is_gold && $is_gold){
+			$get_data = file_get_contents("php://input");
+			parse_str($get_data, $data);
 
-		$data = array_filter($data);
- 
-		unset($data['message'],$data['pingtai_name'],$data['type'],$data['formhash'],$data['create_submit']);
+			$message = $data['message'];
+			$pingtai_name = $data['pingtai_name'];
+			$type = $data['type'];
 
-		$lenght = count($data)/2;
-		$new_data = array();
-		for ($i=1; $i <= $lenght; $i++) { 
-			$money_k = 'money'.($i-1);
-			$num_k = 'num'.($i-1);
-			
+			$data = array_filter($data);
+	 
+			unset($data['message'],$data['pingtai_name'],$data['type'],$data['formhash'],$data['create_submit']);
 
-			if($i==1){
-				$new_data[$data['money']] = $data['num'];
-			}else{
-				$new_data[$data[$money_k]] = $data[$num_k];
+			$lenght = count($data)/2;
+			$new_data = array();
+			for ($i=1; $i <= $lenght; $i++) { 
+				$money_k = 'money'.($i-1);
+				$num_k = 'num'.($i-1);
+				
+
+				if($i==1){
+					$new_data[$data['money']] = $data['num'];
+				}else{
+					$new_data[$data[$money_k]] = $data[$num_k];
+				}
+				
+				
 			}
-			
-			
-		}
-		$list = json_encode($new_data);
+			$list = json_encode($new_data);
 
 
-		# 以json的方式存储
-		// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", print_r($new_data,true),FILE_APPEND);
+			# 以json的方式存储
+			// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", print_r($new_data,true),FILE_APPEND);
 
-		$begintime = date("m-d H:i",time());
-		$insert_data = array(
-			'pingtai_name'=>$pingtai_name,
-			'list' => $list,
-			'taskremark'=>$message, 
-			'username'=>$_G['username'], 
-			'uid'=>$_G['uid'], 
-			'type'=>$type,
-			'begintime'=>$begintime,
-			);
-		C::t("#jubei_task#jubei_task_list")->insert($insert_data);
+			$begintime = date("m-d H:i",time());
+			$insert_data = array(
+				'pingtai_name'=>$pingtai_name,
+				'list' => $list,
+				'taskremark'=>$message, 
+				'username'=>$_G['username'], 
+				'uid'=>$_G['uid'], 
+				'type'=>$type,
+				'begintime'=>$begintime,
+				'status'=>1
+				);
+			C::t("#jubei_task#jubei_task_list")->insert($insert_data);
 
-		updatemembercount($_G['uid'],array('extcredits2'=>'-'.($gold)));
-			showmessage(lang('plugin/jubei_task','create_task_success'),'plugin.php?id=jubei_task');
-			exit;
+			updatemembercount($_G['uid'],array('extcredits2'=>'-'.($gold)));
+				showmessage(lang('plugin/jubei_task','create_task_success'),'plugin.php?id=jubei_task');
+				exit;
+	    // }
 	}else{
 		include template('jubei_task:create_task');
 
@@ -500,6 +505,17 @@ if($model=='create_task'){
 	}
 	$paging = helper_page :: multi($num, $perpage, $currpage, 'plugin.php?id=jubei_task&model=mycomplete', 0, 10, false, false);
 	include template('jubei_task:mycomplete');
+
+}else if($model=='zanting'){
+	
+	$taskid = $_GET['taskid'];
+	$data = array("status"=>2);
+	C::t("#jubei_task#jubei_task_list")->update_by_uid_taskid($data,$uid,$taskid);  //根据两个id来更新，防止远程提交
+
+	showmessage(lang('plugin/jubei_task','zanting_task'),'plugin.php?id=jubei_task&model=myrelease');
+	exit;
+
+
 }else {
 
 

@@ -27,13 +27,17 @@
     <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">$home[taskremark]</td>
 
     <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">
-    <!--{if $home[type] == 1}-->
-    <a href="plugin.php?id=jubei_task&model=submit_task&taskid=$home[id]">{lang jubei_task:index10}</a>
-    <!--{else}-->
-    <a href="plugin.php?id=jubei_task&model=get_task&taskid=$home[id]">{lang jubei_task:index9}</a>
-    
+    <!--{if $home[status] == 1}-->
+        <!--{if $home[type] == 1}-->
+        <a style="color:#009900" href="plugin.php?id=jubei_task&model=submit_task&taskid=$home[id]">{lang jubei_task:index10}</a>
+        <!--{else}-->
+        <a style="color:#009900" href="plugin.php?id=jubei_task&model=get_task&taskid=$home[id]">{lang jubei_task:index9}</a>
+        <!--{/if}-->
+    <!--{elseif $home[status] == 2}-->
+        <span style="color: red;">{lang jubei_task:zanting}</span>
+    <!--{elseif $home[status] == 0}-->
+        <span style="color: red;">{lang jubei_task:jieshu}</span>
     <!--{/if}-->
-
 </td>
 
 </td>

@@ -20,7 +20,7 @@ class table_jubei_task_message extends discuz_table
 		parent::__construct();
 	}
 
-    //插入一条投票记录    
+    //插入一条记录    
     public function insert($data) {
         return DB::insert($this->_table,$data);
     }

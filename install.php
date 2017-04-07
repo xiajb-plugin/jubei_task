@@ -5,6 +5,7 @@
 if(!defined('IN_DISCUZ')) {
 	exit('Access Denied');
 }
+//状态 1 推单进行中 、2推单暂停 、0推单结束
 //start to put your own code DROP TABLE IF EXISTS `pre_jubei_task_list`;
 $sql = <<<EOF
 drop table IF EXISTS `pre_jubei_task_list`;
