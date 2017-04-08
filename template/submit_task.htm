@@ -9,7 +9,9 @@
                                 var cNode = node.cloneNode(true);
                                 var cinputs = cNode.getElementsByTagName('input')
                                 for (var i = 0; i < cinputs.length; i++) {
-                                    cinputs[i].name = cinputs[i].name + '' + length
+                                    var str =cinputs[i].name;
+                                    var k = str.substr(0,str.length-1)
+                                    cinputs[i].name = k + '' + (length+1)
                                 }
                                 var lasttd = cNode.children[cNode.children.length-1]
 
@@ -114,12 +116,12 @@
 
                         <tr style="height:32px;"  class="array">
                             <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:name}
-                                <input type="text" id="name" size="20" name="name" value=""></td>
+                                <input type="text" id="name" size="20" name="name1" value=""></td>
                             <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:tel}
                                 
-                                <input type="text" id="phone" size="20" name="tel" value=""></td>
+                                <input type="text" id="phone" size="20" name="tel1" value=""></td>
                             <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:money}
-                                <input type="text" id="money" size="20" name="money" value=""></td>
+                                <input type="text" id="money" size="20" name="money1" value=""></td>
                                 <td>
                                 <span id="add" onclick="myFunction()">{lang jubei_task:submit_1}</span>
                                     

@@ -58,16 +58,9 @@ if($model=='create_task'){
 			$lenght = count($data)/2;
 			$new_data = array();
 			for ($i=1; $i <= $lenght; $i++) { 
-				$money_k = 'money'.($i-1);
-				$num_k = 'num'.($i-1);
-				
-
-				if($i==1){
-					$new_data[$data['money']] = $data['num'];
-				}else{
-					$new_data[$data[$money_k]] = $data[$num_k];
-				}
-				
+				$money_k = 'money'.$i;
+				$num_k = 'num'.$i;
+				$new_data[$data[$money_k]] = $data[$num_k];
 				
 			}
 			$list = json_encode($new_data);
@@ -103,6 +96,7 @@ if($model=='create_task'){
 	if(submitcheck('submit_message')){
 		$uid = $_G['uid'];
 		$res = C::t("#jubei_task#jubei_task_message")->fetch_by_uid($uid);
+		# 如果个人信息为空，插入，否则update
 		if (empty($res)) {
 			$zfb = $_POST['zfb'];
 			$qq = $_POST['qq'];
@@ -231,40 +225,26 @@ if($model=='create_task'){
 
 		# 逐条插入，一个交单号码名字，就是一条数据
 		for ($i=1; $i <= $lenght; $i++) { 
-			$money_k = 'money'.($i-1);
-			$name_k = 'name'.($i-1);
-			$tel_k = 'tel'.($i-1);
+			$money_k = 'money'.$i;
+			$name_k = 'name'.$i;
+			$tel_k = 'tel'.$i;
 			
 
-			if($i==1){
-				$insert_data = array(
-					'money' => $data['money'], 
-					'name'=>$data['name'],
-					'tel'=>$data['tel'],
-					'username'=>$username,
-					'uid'=>$uid,
-					'taskid'=>$taskid,
-					'qq'=>$qq,
-					'zfb'=>$zfb,
-					'other'=>$other,
-					'begintime'=>date("m-d H:i",time())
-					);
-				C::t("#jubei_task#jubei_task_complete")->insert($insert_data);
-			}else{
-				$insert_data = array(
-					'money' => $data[$money_k], 
-					'name'=>$data[$name_k],
-					'tel'=>$data[$tel_k],
-					'username'=>$username,
-					'uid'=>$uid,
-					'taskid'=>$taskid,
-					'qq'=>$qq,
-					'zfb'=>$zfb,
-					'other'=>$other,
-					'begintime'=>date("m-d H:i",time())
-					);
-				C::t("#jubei_task#jubei_task_complete")->insert($insert_data);
-			}
+		
+			$insert_data = array(
+				'money' => $data[$money_k], 
+				'name'=>$data[$name_k],
+				'tel'=>$data[$tel_k],
+				'username'=>$username,
+				'uid'=>$uid,
+				'taskid'=>$taskid,
+				'qq'=>$qq,
+				'zfb'=>$zfb,
+				'other'=>$other,
+				'begintime'=>date("m-d H:i",time())
+				);
+			C::t("#jubei_task#jubei_task_complete")->insert($insert_data);
+		
 			
 		}
 
@@ -309,113 +289,49 @@ if($model=='create_task'){
 
 		# 逐条插入，一个档位预约就是一条数据
 		for ($i=1; $i <= $lenght; $i++) { 
-			$money_k = 'money'.($i-1);
-			$num_k = 'num'.($i-1);
+			$money_k = 'money'.$i;
+			$num_k = 'num'.$i;
 
-			# 第一次循环比较特殊，特殊处理
-			if($i==1){
-				if ($data['num'] && $data['money']) {
-					
-					
-
-					# 取出档位-名额 的json，编码成array
-					$money = $data['money'];
-					$num = $data['num'];
-
-					
+			$money = $data[$money_k];
+			$num = $data[$num_k];
 
 
-					#判断输入的档位是否在任务已有的档位之中
-					if (in_array($money, $keys)) {
-						$value = $task_res['list'][$money];
-						#判断剩余的名额是否足够
-						if ((int)$value >= (int)$num) {
-							$shengyu_num = (int)$value - (int)$num;
+			#判断输入的档位是否在任务已有的档位之中
+			if (in_array($money, $keys)) {
+				$value = $task_res['list'][$money];
+				#判断剩余的名额是否足够
+				if ((int)$value >= (int)$num) {
+					$shengyu_num = (int)$value - (int)$num;
 
-							$task_res['list'][$money] = $shengyu_num;
-						}else{
-							showmessage(lang('plugin/jubei_task','shengyu_num_error'),'plugin.php?id=jubei_task&model=get_task&taskid='.$taskid);
-							exit;
-						}
-						
-					}else{
-						showmessage(lang('plugin/jubei_task','get_money_error'),'plugin.php?id=jubei_task&model=get_task&taskid='.$taskid);
-						exit;
-					}
-
-					# 插入预约数据
-					$insert_data = array(
-						'num' => $data['num'], 
-						'money'=>$data['money'],
-						'qq'=>$qq,
-						'username'=>$username,
-						'uid'=>$uid,
-						'taskid'=>$taskid,
-						'begintime'=>date("m-d H:i",time())
-						);
-					C::t("#jubei_task#jubei_task_get")->insert($insert_data);	
-
-					#更新剩余名额数据
-					$list = array('list'=>json_encode($task_res['list']));
-
-					C::t("#jubei_task#jubei_task_list")->update_by_id($list,$taskid);
-
-
+					$task_res['list'][$money] = $shengyu_num;
+					// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt",$shengyu_num.'-'.$money.'-'.$value,FILE_APPEND);
 				}else{
-					showmessage(lang('plugin/jubei_task','get_task_error'),'plugin.php?id=jubei_task&model=get_task&taskid='.$taskid);
+					showmessage(lang('plugin/jubei_task','shengyu_num_error'),'plugin.php?id=jubei_task&model=get_task&taskid='.$taskid);
 					exit;
 				}
-
+				
 			}else{
-				// if ($data[$num_k] && $data[$money_k]) {
-// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt",'print_r($keys,true)',FILE_APPEND);
-					// $task_res['list'] = json_decode($task_res['list'],true);
-					$money = $data[$money_k];
-					$num = $data[$num_k];
-
-
-					#判断输入的档位是否在任务已有的档位之中
-					if (in_array($money, $keys)) {
-						$value = $task_res['list'][$money];
-						#判断剩余的名额是否足够
-						if ((int)$value >= (int)$num) {
-							$shengyu_num = (int)$value - (int)$num;
-
-							$task_res['list'][$money] = $shengyu_num;
-							// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt",$shengyu_num.'-'.$money.'-'.$value,FILE_APPEND);
-						}else{
-							showmessage(lang('plugin/jubei_task','shengyu_num_error'),'plugin.php?id=jubei_task&model=get_task&taskid='.$taskid);
-							exit;
-						}
-						
-					}else{
-						showmessage(lang('plugin/jubei_task','get_money_error'),'plugin.php?id=jubei_task&model=get_task&taskid='.$taskid);
-						exit;
-					}
-
-					$insert_data = array(
-						'num' => $data[$num_k], 
-						'money'=>$data[$money_k],
-						'qq'=>$qq,
-						'username'=>$username,
-						'uid'=>$uid,
-						'taskid'=>$taskid,
-						'begintime'=>date("m-d H:i",time())
-						);
-					C::t("#jubei_task#jubei_task_get")->insert($insert_data);
-
-
-					#更新剩余名额数据
-					$list = array('list'=>json_encode($task_res['list']));
-
-					C::t("#jubei_task#jubei_task_list")->update_by_id($list,$taskid);
-
-				// }else{
-				// 	showmessage(lang('plugin/jubei_task','get_task_error'),'plugin.php?id=jubei_task&model=get_task&taskid='.$taskid);
-				// 	exit;
-				// }
+				showmessage(lang('plugin/jubei_task','get_money_error'),'plugin.php?id=jubei_task&model=get_task&taskid='.$taskid);
+				exit;
 			}
-			
+
+			$insert_data = array(
+				'num' => $data[$num_k], 
+				'money'=>$data[$money_k],
+				'qq'=>$qq,
+				'username'=>$username,
+				'uid'=>$uid,
+				'taskid'=>$taskid,
+				'begintime'=>date("m-d H:i",time())
+				);
+			C::t("#jubei_task#jubei_task_get")->insert($insert_data);
+
+
+			#更新剩余名额数据
+			$list = array('list'=>json_encode($task_res['list']));
+
+			C::t("#jubei_task#jubei_task_list")->update_by_id($list,$taskid);
+
 		}
 		showmessage(lang('plugin/jubei_task','get_task_success'),'plugin.php?id=jubei_task&model=myreservation');
 		exit;	
