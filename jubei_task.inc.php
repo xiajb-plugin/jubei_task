@@ -286,7 +286,7 @@ if($model=='create_task'){
 		$task_res['list'] = json_decode($task_res['list'],true);
 		$keys = array_keys($task_res['list']);
 
-
+		$data_status = false;
 		# 逐条插入，一个档位预约就是一条数据
 		for ($i=1; $i <= $lenght; $i++) { 
 			$money_k = 'money'.$i;
@@ -304,34 +304,49 @@ if($model=='create_task'){
 					$shengyu_num = (int)$value - (int)$num;
 
 					$task_res['list'][$money] = $shengyu_num;
+					$data_status = true;
+					
+
 					// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt",$shengyu_num.'-'.$money.'-'.$value,FILE_APPEND);
 				}else{
+					$data_status = false;
 					showmessage(lang('plugin/jubei_task','shengyu_num_error'),'plugin.php?id=jubei_task&model=get_task&taskid='.$taskid);
 					exit;
 				}
 				
 			}else{
+				$data_status = false;
 				showmessage(lang('plugin/jubei_task','get_money_error'),'plugin.php?id=jubei_task&model=get_task&taskid='.$taskid);
 				exit;
 			}
+		}
+		if ($data_status == true) {
+			for ($i=1; $i <= $lenght; $i++) { 
+				$money_k = 'money'.$i;
+				$num_k = 'num'.$i;
 
-			$insert_data = array(
-				'num' => $data[$num_k], 
-				'money'=>$data[$money_k],
-				'qq'=>$qq,
-				'username'=>$username,
-				'uid'=>$uid,
-				'taskid'=>$taskid,
-				'begintime'=>date("m-d H:i",time())
-				);
-			C::t("#jubei_task#jubei_task_get")->insert($insert_data);
+				$money = $data[$money_k];
+				$num = $data[$num_k];
 
 
-			#更新剩余名额数据
-			$list = array('list'=>json_encode($task_res['list']));
 
-			C::t("#jubei_task#jubei_task_list")->update_by_id($list,$taskid);
+				$insert_data = array(
+					'num' => $data[$num_k], 
+					'money'=>$data[$money_k],
+					'qq'=>$qq,
+					'username'=>$username,
+					'uid'=>$uid,
+					'taskid'=>$taskid,
+					'begintime'=>date("m-d H:i",time())
+					);
+				C::t("#jubei_task#jubei_task_get")->insert($insert_data);
 
+
+				#更新剩余名额数据
+				$list = array('list'=>json_encode($task_res['list']));
+
+				C::t("#jubei_task#jubei_task_list")->update_by_id($list,$taskid);
+			}
 		}
 		showmessage(lang('plugin/jubei_task','get_task_success'),'plugin.php?id=jubei_task&model=myreservation');
 		exit;	

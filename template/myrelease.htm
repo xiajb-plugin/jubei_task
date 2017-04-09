@@ -27,11 +27,11 @@
     <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">$home[pingtai_name]</td>
     <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">$home[taskremark]</td>
     <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">
-    <!--{if $home[status]==1}--><a href="javascript:void(0)" onclick="deleteproject({$home[id]})">{lang jubei_task:jinxingzhong}</a>
+    <!--{if $home[status]==1}--><a style="color:#009900" href="javascript:void(0)" onclick="deleteproject({$home[id]})">{lang jubei_task:jinxingzhong}</a>
     <!--{elseif $home[status]==0}-->
-    <span>{lang jubei_task:jieshu}</span>
+    <span style="color: red;">{lang jubei_task:jieshu}</span>
       <!--{elseif $home[status]==2}-->
-    <span>{lang jubei_task:zanting}</span>
+    <span style="color: red;">{lang jubei_task:zanting}</span>
     <!--{/if}-->
     </td>
     <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">

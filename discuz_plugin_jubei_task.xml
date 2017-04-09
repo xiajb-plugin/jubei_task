@@ -194,20 +194,17 @@
 				<item id="ziliao_zhuyi"><![CDATA[1、请填写真实qq和支付宝，方便推手直接打款</br>
 					2、交单时会自动识别你所填写的支付宝和qq</br>
 					3、支付宝和qq如有改变，可直接修改</br>]]></item>
+				<item id="jiaodan_zhuyi"><![CDATA[1、完善了个人资料后，交单所提交的资料即个人资料的信息</br>
+					2、不要重复交单，若多次重复交单，一经核实，将封号</br>
+					3、支付宝和qq如有改变，可直接修改</br>]]></item>
 				<item id="jiaodanjilv"><![CDATA[交单记录]]></item>
 				<item id="jiaodan"><![CDATA[【交单】]]></item>
 				<item id="down"><![CDATA[【导出数据】]]></item>
 				<item id="not_data"><![CDATA[没有可下载的数据！]]></item>
 				<item id="my_message"><![CDATA[我的资料]]></item>
-				<item id="wanshanziliao"><![CDATA[请完善资料]]></item>
-				<item id="votenum"><![CDATA[累计投票]]></item>
-				<item id="viewnum"><![CDATA[浏览人数]]></item>
-				<item id="image_error"><![CDATA[上传图片失败，请联系站长]]></item>
-				<item id="no_data"><![CDATA[上传数据为空]]></item>
-				<item id="sign_start"><![CDATA[报名未开始]]></item>
-				<item id="sign_end"><![CDATA[报名已结束]]></item>
-				<item id="vote_start"><![CDATA[投票未开始]]></item>
-				<item id="vote_end"><![CDATA[报名已结束]]></item>
+				<item id="wanshanziliao"><![CDATA[【请完善资料！！！】]]></item>
+				<item id="yuyue_time"><![CDATA[预约时间]]></item>
+
 			</item>
 		</item>
 	</item>
