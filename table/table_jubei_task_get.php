@@ -57,7 +57,16 @@ class table_jubei_task_get extends discuz_table
 		return DB::fetch_all("select *  from ".DB::table($this->_table)." where taskid=".$taskid." order by id desc limit $start,$limit");
 	}
 
-	
+
+	#根据id查询数据
+	public function fetch_by_id($id){
+		return DB::fetch_first("select * from ".DB::table($this->_table)." where id=$id");
+	}	
+
+	#更新剩余名额
+	public function update_by_id($data,$getid) {
+        return DB::update($this->_table,$data, 'id=' . $getid);
+    }
 }
 
 

@@ -33,6 +33,11 @@
                     <input type="text" id="pingtai_name" size="20" name="pingtai_name" value=""></td>
             </tr>
 
+            <tr style="height:32px;">
+                <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:jianjie}
+                    <input type="text" id="note" size="30" name="note" value=""></td>
+            </tr>
+
             <tr style="height:32px;" class="array">
                 <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:create_5}
                     <input type="text" id="money" size="20" name="money1" value=""></td>
@@ -100,7 +105,11 @@
                     if (document.getElementById("num").value == '') {
                         alert("请填写数量！");
                         return false;
-                    }                    
+                    }
+                    if (document.getElementById("note").value == '') {
+                        alert("请填写收益简介！");
+                        return false;
+                    }                       
                 }
 
             </script>

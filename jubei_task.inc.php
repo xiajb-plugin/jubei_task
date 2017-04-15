@@ -24,22 +24,25 @@ $gold = $_G['cache']['plugin']['jubei_task']['gold'];
 $mygold = C::t("#jubei_task#jubei_task_list")->fetch_extcredits($_G['uid']);
 
 
+if (in_array($_G['groupid'], unserialize($_G['cache']['plugin']['jubei_task']['create_group']))) {
+	# 允许推单
+	$is_true = 1;
+}else{
+	$is_true = 0;
+}
+
+if ($mygold < $gold) {
+	# 金币不足，不能推单
+	$is_gold = 0;
+}else{
+	$is_gold =1;
+}
+
+
 
 # 创建任务
 if($model=='create_task'){
-	if (in_array($_G['groupid'], unserialize($_G['cache']['plugin']['jubei_task']['create_group']))) {
-		# 允许推单
-		$is_true = 1;
-    }else{
-    	$is_true = 0;
-    }
 
-    if ($mygold < $gold) {
-    	# 金币不足，不能推单
-    	$is_gold = 0;
-    }else{
-    	$is_gold =1;
-    }
     // if (($is_true ==1) && ($is_gold== 1)) {
     	# code...
 
@@ -50,10 +53,11 @@ if($model=='create_task'){
 			$message = $data['message'];
 			$pingtai_name = $data['pingtai_name'];
 			$type = $data['type'];
+			$note = $data['note'];
 
 			$data = array_filter($data);
 	 
-			unset($data['message'],$data['pingtai_name'],$data['type'],$data['formhash'],$data['create_submit']);
+			unset($data['note'],$data['message'],$data['pingtai_name'],$data['type'],$data['formhash'],$data['create_submit']);
 
 			$lenght = count($data)/2;
 			$new_data = array();
@@ -75,6 +79,7 @@ if($model=='create_task'){
 				'list' => $list,
 				'taskremark'=>$message, 
 				'username'=>$_G['username'], 
+				'note'=>$note,
 				'uid'=>$_G['uid'], 
 				'type'=>$type,
 				'begintime'=>$begintime,
@@ -125,7 +130,6 @@ if($model=='create_task'){
 	$res = C::t("#jubei_task#jubei_task_list")->fetch_by_id($taskid);
 	$homelist = json_decode($res['list'],true);
 	$lenght = count($homelist);
-	// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt",print_r($homelist,true) ,FILE_APPEND);
 
 	include template('jubei_task:task_pro');
 
@@ -211,26 +215,84 @@ if($model=='create_task'){
 		$username = $_G['username'];
 		$uid = $_G['uid'];
 
-		$taskid = $data['taskid'];
+		$getid = $data['getid'];
 		$zfb = $data['zfb'];
 		$qq = $data['qq'];
 		$other = $data['other'];
+		$taskid = $data['taskid'];
 
-		unset($data['taskid'],$data['zfb'],$data['qq'],$data['other'],$data['formhash'],$data['submit_task']);
+		unset($data['taskid'],$data['getid'],$data['zfb'],$data['qq'],$data['other'],$data['formhash'],$data['submit_task']);
 
 		// $arr = json_encode($data);
 		// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", count($data),FILE_APPEND);
 
 		$lenght = count($data)/3;
 
+		$get_task_res = C::t("#jubei_task#jubei_task_get")->fetch_by_id($getid);
+		$get_list = json_decode($get_task_res['list'],true);
+		$get_num = array_values($get_list);
+		$get_money = array_keys($get_list);
+		$submit_task_list = array();
+		$shengyu_list = array();
+		$success_num = 0;
 		# 逐条插入，一个交单号码名字，就是一条数据
+		# 此时仅仅判断提交的数据是否符合预约的数据
 		for ($i=1; $i <= $lenght; $i++) { 
 			$money_k = 'money'.$i;
 			$name_k = 'name'.$i;
 			$tel_k = 'tel'.$i;
-			
+			if (!in_array($data[$money_k], $get_money)) { //档位不对，//判断当前的交单档位是否在预约档位中，
+				showmessage(lang('plugin/jubei_task','sublimt_task_error'),'plugin.php?id=jubei_task&model=mycomplete');
+				exit;
+			}
+			$submit_task_num = array_values($submit_task_list);
+			$submit_task_money = array_keys($submit_task_list);	
 
-		
+			if (in_array($data[$money_k], $submit_task_money)) {
+				$submit_task_list[$data[$money_k]] = $submit_task_list[$data[$money_k]]+1;
+			}else{
+				$submit_task_list[$data[$money_k]] = 1;
+			}
+			if ($submit_task_list[$data[$money_k]] > $get_list[$data[$money_k]]) { //交单数量大于领取名额数量，抛出错误
+				showmessage(lang('plugin/jubei_task','sublimt_task_error2'),'plugin.php?id=jubei_task&model=mycomplete');
+				exit;
+			}
+			// $shengyu_list[$data[$money_k]] = $get_list[$data[$money_k]] - $submit_task_list[$data[$money_k]];
+		}
+
+		$submit_money = array_keys($submit_task_list);
+
+// foreach ($submit_money as $va) {  //判断当前的交单档位是否在预约档位中，与上面的代码重复
+//     if (!in_array($va, $get_money)) {  
+// 		showmessage(lang('plugin/jubei_task','sublimt_task_error3'),'plugin.php?id=jubei_task&model=mycomplete');
+// 		exit;
+//     }  
+// } 
+
+
+		for ($n=0; $n < count($get_money); $n++) { 
+			
+			//根据预约数量和上面的到的交单数量，得到剩余未完成的预约数量
+			if (in_array($get_money[$n], $submit_money)) {
+				$shengyu_list[$get_money[$n]] = $get_list[$get_money[$n]] - $submit_task_list[$get_money[$n]];
+			}else{
+				$shengyu_list[$get_money[$n]] = $get_list[$get_money[$n]];
+			}
+			
+		}
+
+
+			file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt",print_r($shengyu_list,true),FILE_APPEND);
+
+
+
+// showmessage('您已更新店铺名为：{name} ', 'plugin.php?id=jubei_task&model=mycomplete', array('name' => 'DZ起点网'));
+
+		//这个for循环用来插入数据
+		for ($k=1; $k <= $lenght; $k++) { 
+			$money_k = 'money'.$k;
+			$name_k = 'name'.$k;
+			$tel_k = 'tel'.$k;
 			$insert_data = array(
 				'money' => $data[$money_k], 
 				'name'=>$data[$name_k],
@@ -243,19 +305,32 @@ if($model=='create_task'){
 				'other'=>$other,
 				'begintime'=>date("m-d H:i",time())
 				);
-			C::t("#jubei_task#jubei_task_complete")->insert($insert_data);
-		
-			
-		}
+			$insert_status = C::t("#jubei_task#jubei_task_complete")->insert($insert_data);
 
+			if ($insert_status == 1) {
+				// $success_num = $success_num +1;
+				$shengyu_list = json_encode($shengyu_list);
+				// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt",$shengyu_list,FILE_APPEND);
+				// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt",'success_num='.$success_num,FILE_APPEND);
+
+				$update_get_data = array("list"=>$shengyu_list);
+				C::t("#jubei_task#jubei_task_get")->update_by_id($update_get_data,$getid);
+				$shengyu_list = json_decode($shengyu_list,true);
+
+			}
+		}
 			showmessage(lang('plugin/jubei_task','sublimt_task_success'),'plugin.php?id=jubei_task&model=mycomplete');
 			exit;
+// showmessage('您已更新店铺名为：{name} ', 'plugin.php?id=jubei_task&model=mycomplete', array('name' => 'DZ起点网'));
+
+
 	}else{
 		# 交单界面
-
+		$getid = $_GET['getid'];
 		$message = C::t("#jubei_task#jubei_task_message")->fetch_by_uid($_G['uid']);
-		$taskid = $_GET['taskid'];
-		$res = C::t("#jubei_task#jubei_task_list")->fetch_by_id($taskid);
+		$get_task_res = C::t("#jubei_task#jubei_task_get")->fetch_by_id($getid);
+		$taskid = $get_task_res['taskid'];
+		$res = C::t("#jubei_task#jubei_task_list")->fetch_by_id($get_task_res['taskid']);
 		$homelist = json_decode($res['list'],true);
 		$lenght = count($homelist);
 		include template('jubei_task:submit_task');
@@ -267,7 +342,7 @@ if($model=='create_task'){
 # 预约任务
 }else if($model=='get_task'){
 
-	# 预约任务提交表单
+	# 预约任务。，提交表单
 	if(submitcheck('get_task_submit')){
 		$get_data = file_get_contents("php://input");
 		parse_str($get_data, $data);
@@ -278,32 +353,30 @@ if($model=='create_task'){
 		$uid = $_G['uid'];
 
 		unset($data['formhash'],$data['get_task_submit'],$data['taskid'],$data['qq']);
-
+		$lenght = count($data)/2;
 
 	// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", print_r($data,true));
-		$lenght = count($data)/2;
-		$task_res = C::t("#jubei_task#jubei_task_list")->fetch_by_id($taskid); #根据taskid取出集合
+		
+		$task_res = C::t("#jubei_task#jubei_task_list")->fetch_by_id($taskid); #根据taskid取出当前任务的数量信息
 		$task_res['list'] = json_decode($task_res['list'],true);
 		$keys = array_keys($task_res['list']);
 
 		$data_status = false;
-		# 逐条插入，一个档位预约就是一条数据
+		# 作为一个list插入
+		$new_data = array();
 		for ($i=1; $i <= $lenght; $i++) { 
 			$money_k = 'money'.$i;
 			$num_k = 'num'.$i;
-
-			$money = $data[$money_k];
-			$num = $data[$num_k];
-
+			$new_data[$data[$money_k]] = $data[$num_k];
 
 			#判断输入的档位是否在任务已有的档位之中
-			if (in_array($money, $keys)) {
-				$value = $task_res['list'][$money];
+			if (in_array($data[$money_k], $keys)) {
+				$value = $task_res['list'][$data[$money_k]];
 				#判断剩余的名额是否足够
-				if ((int)$value >= (int)$num) {
-					$shengyu_num = (int)$value - (int)$num;
+				if ((int)$value >= (int)$data[$num_k]) {
+					$shengyu_num = (int)$value - (int)$data[$num_k];
 
-					$task_res['list'][$money] = $shengyu_num;
+					$task_res['list'][$data[$money_k]] = $shengyu_num;
 					$data_status = true;
 					
 
@@ -318,21 +391,46 @@ if($model=='create_task'){
 				$data_status = false;
 				showmessage(lang('plugin/jubei_task','get_money_error'),'plugin.php?id=jubei_task&model=get_task&taskid='.$taskid);
 				exit;
-			}
+			}			
 		}
+		$list = json_encode($new_data);
+		// for ($i=1; $i <= $lenght; $i++) { 
+		// 	$money_k = 'money'.$i;
+		// 	$num_k = 'num'.$i;
+
+		// 	$money = $data[$money_k];
+		// 	$num = $data[$num_k];
+
+
+		// 	#判断输入的档位是否在任务已有的档位之中
+		// 	if (in_array($money, $keys)) {
+		// 		$value = $task_res['list'][$money];
+		// 		#判断剩余的名额是否足够
+		// 		if ((int)$value >= (int)$num) {
+		// 			$shengyu_num = (int)$value - (int)$num;
+
+		// 			$task_res['list'][$money] = $shengyu_num;
+		// 			$data_status = true;
+					
+
+		// 			// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt",$shengyu_num.'-'.$money.'-'.$value,FILE_APPEND);
+		// 		}else{
+		// 			$data_status = false;
+		// 			showmessage(lang('plugin/jubei_task','shengyu_num_error'),'plugin.php?id=jubei_task&model=get_task&taskid='.$taskid);
+		// 			exit;
+		// 		}
+				
+		// 	}else{
+		// 		$data_status = false;
+		// 		showmessage(lang('plugin/jubei_task','get_money_error'),'plugin.php?id=jubei_task&model=get_task&taskid='.$taskid);
+		// 		exit;
+		// 	}
+		// }
 		if ($data_status == true) {
-			for ($i=1; $i <= $lenght; $i++) { 
-				$money_k = 'money'.$i;
-				$num_k = 'num'.$i;
-
-				$money = $data[$money_k];
-				$num = $data[$num_k];
-
-
+			
 
 				$insert_data = array(
-					'num' => $data[$num_k], 
-					'money'=>$data[$money_k],
+					'list'=>$list,
 					'qq'=>$qq,
 					'username'=>$username,
 					'uid'=>$uid,
@@ -343,11 +441,11 @@ if($model=='create_task'){
 
 
 				#更新剩余名额数据
-				$list = array('list'=>json_encode($task_res['list']));
+				$shengyu_list = array('list'=>json_encode($task_res['list']));
 
-				C::t("#jubei_task#jubei_task_list")->update_by_id($list,$taskid);
+				C::t("#jubei_task#jubei_task_list")->update_by_id($shengyu_list,$taskid);
 			}
-		}
+		
 		showmessage(lang('plugin/jubei_task','get_task_success'),'plugin.php?id=jubei_task&model=myreservation');
 		exit;	
 		
@@ -374,11 +472,13 @@ if($model=='create_task'){
 	$num=C::t("#jubei_task#jubei_task_get")->count_by_uid($uid);
 	$start=($currpage-1)*$perpage;
 	$homelist=C::t("#jubei_task#jubei_task_get")->fetch_all_by_uid($uid,$start,$perpage);
+	// $homelist['list'] = json_decode($homelist['list'],true);
 	# 循环取出平台名字
 	for ($i=0; $i <count($homelist) ; $i++) { 
 		$taskid = $homelist[$i]['taskid'];
 		$res = C::t("#jubei_task#jubei_task_list")->fetch_by_id($taskid);
 		$homelist[$i]['pingtai_name'] = $res['pingtai_name'];
+		$homelist[$i]['list'] = json_decode($homelist[$i]['list'],true);
 	}
 	$paging = helper_page :: multi($num, $perpage, $currpage, 'plugin.php?id=jubei_task&model=myreservation', 0, 10, false, false);
 
@@ -446,6 +546,59 @@ if($model=='create_task'){
 	showmessage(lang('plugin/jubei_task','zanting_task'),'plugin.php?id=jubei_task&model=myrelease');
 	exit;
 
+}else if($model=='update_task'){
+
+	if(submitcheck('update_submit')){
+			$get_data = file_get_contents("php://input");
+			parse_str($get_data, $data);
+
+			$message = $data['message'];
+			$pingtai_name = $data['pingtai_name'];
+			$type = $data['type'];
+			$note = $data['note'];
+			$taskid = $data['taskid'];
+			$data = array_filter($data);
+	 
+			unset($data['taskid'],$data['note'],$data['message'],$data['pingtai_name'],$data['type'],$data['formhash'],$data['create_submit']);
+
+			$lenght = count($data)/2;
+			$new_data = array();
+			for ($i=1; $i <= $lenght; $i++) { 
+				$money_k = 'money'.$i;
+				$num_k = 'num'.$i;
+				$new_data[$data[$money_k]] = $data[$num_k];
+				
+			}
+			$list = json_encode($new_data);
+
+
+			# 以json的方式存储
+			// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", print_r($new_data,true),FILE_APPEND);
+
+			$begintime = date("m-d H:i",time());
+			$update_data = array(
+				'pingtai_name'=>$pingtai_name,
+				'list' => $list,
+				'taskremark'=>$message, 
+				'username'=>$_G['username'], 
+				'note'=>$note,
+				'uid'=>$_G['uid'], 
+				'type'=>$type,
+				'begintime'=>$begintime,
+				'status'=>1
+				);
+			C::t("#jubei_task#jubei_task_list")->update_by_uid_taskid($update_data,$_G['uid'],$taskid);
+			showmessage(lang('plugin/jubei_task','create_task_success'),'plugin.php?id=jubei_task');
+			exit;
+
+	}else{
+		$uid = $_G['uid'];
+		$taskid = $_GET['taskid'];
+		$res = C::t("#jubei_task#jubei_task_list")->fetch_by_id($taskid);
+		$homelist = json_decode($res['list'],true);
+		$lenght = count($homelist);
+		include template('jubei_task:update_task');
+	}
 
 }else {
 

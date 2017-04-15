@@ -23,12 +23,22 @@
     <tr align="center" height="28">
     <td bgcolor="#fffac7" style="border:1px solid #ff9900;border-top:none">$home[begintime]</td>
     <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">$home[pingtai_name]</td>
-    <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">$home[money]</td>
-    <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">$home[num]</td>
+      
+    <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">
+    <!--{loop $home[list] $key $val}-->
+    $key</br>
+    <!--{/loop}-->
+    </td>
+     
+    <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">
+    <!--{loop $home[list] $key $val}-->
+    $val</br>
+    <!--{/loop}-->
+    </td>
 
     <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">
 
-    <a href="plugin.php?id=jubei_task&model=submit_task&taskid=$home[taskid]">{lang jubei_task:jiaodan}</a>
+    <a href="plugin.php?id=jubei_task&model=submit_task&getid=$home[id]">{lang jubei_task:jiaodan}</a>
 
 
 </td>
