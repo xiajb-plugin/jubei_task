@@ -282,7 +282,7 @@ if($model=='create_task'){
 		}
 
 
-			file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt",print_r($shengyu_list,true),FILE_APPEND);
+			// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt",print_r($shengyu_list,true),FILE_APPEND);
 
 
 
@@ -460,6 +460,31 @@ if($model=='create_task'){
 		// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt",print_r($homelist,true) ,FILE_APPEND);
 		
 		include template('jubei_task:get_task');
+	}
+
+
+# quxiao yuyue
+}else if($model=='cancel_task_get'){
+	if(submitcheck('cancel_task_get')){
+		$get_data = file_get_contents("php://input");
+		parse_str($get_data, $data);
+		$getid = $data['getid']
+		$taskid = $data['taskid'];
+		unset($data['taskid'],$data['getid']);
+		$new_data = array();
+		$res = C::t("#jubei_task#jubei_task_get")->fetch_by_id($getid);
+		$res_list = json_decode($res['list'],true);
+		for ($i=1; $i <=  (count($data)/2); $i++) { 
+			$money_k = 'money'.$i;
+			$num_k = 'num'.$i;
+			$new_data[$data[$money_k]] = $data[$num_k];
+		}
+
+
+
+	}else{
+
+		include template('jubei_task:cancel_task_get');
 	}
 
 # 我的预约
