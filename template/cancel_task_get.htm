@@ -38,13 +38,14 @@
 
 
                     </table>
-<form action="plugin.php?id=jubei_task&model=get_task" name="addhome" method="post">
+<form action="plugin.php?id=jubei_task&model=cancel_task_get" name="addhome" method="post">
                     <table cellspacing="0" cellpadding="4" border="0" width="95%">
                         <tr style="height:32px;">
                             
                                 <td>
                                     <input type="hidden" name="formhash" value="{FORMHASH}">
                                     <input type="hidden" name="taskid" value="{$taskid}">
+                                    <input type="hidden" name="getid" value="{$getid}">
                                 </td>
                         </tr>
 

@@ -438,10 +438,13 @@ if($model=='create_task'){
 					'begintime'=>date("m-d H:i",time())
 					);
 				C::t("#jubei_task#jubei_task_get")->insert($insert_data);
-
+				$shengyu_list_num = array_values($task_res['list']);
+				if (array_unique($shengyu_list_num) == array(0)) {
+					$shengyu_list = array("status"=>0);
+				}
 
 				#更新剩余名额数据
-				$shengyu_list = array('list'=>json_encode($task_res['list']));
+				$shengyu_list['list'] = json_encode($task_res['list']);
 
 				C::t("#jubei_task#jubei_task_list")->update_by_id($shengyu_list,$taskid);
 			}
@@ -468,22 +471,65 @@ if($model=='create_task'){
 	if(submitcheck('cancel_task_get')){
 		$get_data = file_get_contents("php://input");
 		parse_str($get_data, $data);
-		$getid = $data['getid']
+		$getid = $data['getid'];
 		$taskid = $data['taskid'];
-		unset($data['taskid'],$data['getid']);
-		$new_data = array();
+		unset($data['taskid'],$data['getid'],$data['formhash']);
+		$cancel_task_list = array();
 		$res = C::t("#jubei_task#jubei_task_get")->fetch_by_id($getid);
-		$res_list = json_decode($res['list'],true);
-		for ($i=1; $i <=  (count($data)/2); $i++) { 
+		$get_list = json_decode($res['list'],true);
+		for ($i=1; $i <= (count($data)/2); $i++) { 
 			$money_k = 'money'.$i;
 			$num_k = 'num'.$i;
-			$new_data[$data[$money_k]] = $data[$num_k];
+			$cancel_task_list[$data[$money_k]] = $data[$num_k];
+		}
+		$cancel_money = array_keys($cancel_task_list);
+
+		for ($n=0; $n < count($cancel_money); $n++) { 
+			if($cancel_task_list[$cancel_money[$n]] > $get_list[$cancel_money[$n]]){
+				showmessage(lang('plugin/jubei_task','cancel_task_get_error'),'plugin.php?id=jubei_task&model=myreservation');
+			}
+		}
+		$shengyu_list = array();
+		$get_money = array_keys($get_list);
+
+
+		for ($n=0; $n < count($get_money); $n++) { 
+			//根据预约数量和上面的到的退单数量，得到剩余未完成的预约数量、
+			//遍历数量少的，判断数量多的的key是否在数量少的的key里面，有的话，减去，没有的话数量不变
+			if (in_array($get_money[$n], $cancel_money)) {
+				$shengyu_list[$get_money[$n]] = $get_list[$get_money[$n]] - $cancel_task_list[$get_money[$n]];
+			}else{
+				$shengyu_list[$get_money[$n]] = $get_list[$get_money[$n]];
+			}
+			
 		}
 
 
+		$shengyu_list = json_encode($shengyu_list);
+		$update_get_data = array("list"=>$shengyu_list);
+		C::t("#jubei_task#jubei_task_get")->update_by_id($update_get_data,$getid);
+
+		//更新任务的名额
+		$total_update_data = array();
+		$total_res = C::t("#jubei_task#jubei_task_list")->fetch_by_id($taskid);
+		$total_list = json_decode($total_res['list'],true);
+		$total_list_num = array_values($total_list);
+		if (array_unique($total_list_num) == array(0)) { //如果任务余额是0，更新状态
+			$total_update_data["status"] = 1;
+		}
+		for ($m=0; $m < count($cancel_money); $m++) { 
+			//循环更新任务的数量
+			$total_list[$cancel_money[$m]] = $total_list[$cancel_money[$m]]+ $cancel_task_list[$cancel_money[$m]];
+		}
+		$total_update_data["list"] = json_encode($total_list);
+		C::t("#jubei_task#jubei_task_list")->update_by_id($total_update_data,$taskid);
+		showmessage(lang('plugin/jubei_task','cancel_task_success'),'plugin.php?id=jubei_task&model=myreservation');
+
 
 	}else{
-
+		$getid = $_GET['getid'];
+		$res = C::t("#jubei_task#jubei_task_get")->fetch_by_id($getid);
+		$taskid = $res['taskid'];
 		include template('jubei_task:cancel_task_get');
 	}
 

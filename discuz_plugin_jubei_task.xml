@@ -205,7 +205,12 @@
 				<item id="wanshanziliao"><![CDATA[【请完善资料！！！】]]></item>
 				<item id="yuyue_time"><![CDATA[预约时间]]></item>
 				<item id="update_task"><![CDATA[修改任务]]></item>
-				<item id="cancel_task_get"><![CDATA[tuidan]]></item>
+				<item id="cancel_task_get"><![CDATA[退单]]></item>
+				<item id="cancel_get"><![CDATA[取消预约]]></item>
+				<item id="shengyu_minge"><![CDATA[剩余名额]]></item>
+				<item id="yuyue_minge"><![CDATA[预约名额]]></item>
+				<item id="jianjie"><![CDATA[简介]]></item>
+
 			</item>
 		</item>
 	</item>
