@@ -590,7 +590,7 @@ if($model=='create_task'){
 		// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt",print_r($row,true) ,FILE_APPEND);
 
 		$output = fopen('php://output', 'w') or die("can't open php://output");  
-		fwrite($file, chr(0XEF) . chr(0xBB) . chr(0XBF));
+		fwrite($file, $bom =( chr(0xEF) . chr(0xBB) . chr(0xBF) ));
 		//告诉浏览器这个是一个csv文件  
 		$filename = "交单信息表" . date('Y-m-d', time());  
 		header("Content-Type: application/csv;charset=ansi");  
