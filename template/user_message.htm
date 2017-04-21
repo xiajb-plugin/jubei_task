@@ -11,11 +11,11 @@
 
     <div style="padding: 0 10px 10px;">
         <table cellspacing="0" cellpadding="4" border="0" width="95%">
-			{lang jubei_task:gerenjianjie}
+			{lang jubei_task:gerenjianjie}:$res['message']
 
             <tr style="height:38px;">
                 <td>
-                    <span style="color:red;">*</span>&nbsp;{lang jubei_task:shuxing}
+                    <span style="color:red;">*</span>&nbsp;{lang jubei_task:shuxing}:
     <!--{if $res[type] == 1}-->
     {lang jubei_task:tuishou}
     <!--{else}-->
@@ -24,13 +24,13 @@
                 </td>
             </tr>
             <tr style="height:32px;">
-                <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:zfb}
-                    $res['zfb']}
+                <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:zfb}:
+                    $res['zfb']
             </tr>
 
             <tr style="height:32px;">
-                <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:qq}
-                    {$res['qq']}
+                <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:qq}:
+                    $res['qq']
             </tr>
 
 
@@ -38,13 +38,6 @@
 
         </table>
                 </div>
-                        <tr>
-                            <td>
-                                <div class="notice" style="border:1px dashed #f60; background-color:#FFC">
-                                {lang jubei_task:ziliao_zhuyi}
-                                    <br>                                </div>
-                            </td>
-                        </tr>
             </div>
 
         </div>
