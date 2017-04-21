@@ -334,10 +334,16 @@ if($model=='create_task'){
 	}else{
 		# 交单界面
 		$getid = $_GET['getid'];
+		$taskid = $_GET['taskid'];
+
+		if ($getid) {
+			$get_task_res = C::t("#jubei_task#jubei_task_get")->fetch_by_id($getid);
+			$taskid = $get_task_res['taskid'];
+		}
 		$message = C::t("#jubei_task#jubei_task_message")->fetch_by_uid($_G['uid']);
-		$get_task_res = C::t("#jubei_task#jubei_task_get")->fetch_by_id($getid);
-		$taskid = $get_task_res['taskid'];
-		$res = C::t("#jubei_task#jubei_task_list")->fetch_by_id($get_task_res['taskid']);
+		
+		
+		$res = C::t("#jubei_task#jubei_task_list")->fetch_by_id($taskid);
 		$homelist = json_decode($get_task_res['list'],true);
 		$lenght = count($homelist);
 		include template('jubei_task:submit_task');
