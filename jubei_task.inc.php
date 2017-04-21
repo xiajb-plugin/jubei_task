@@ -593,7 +593,7 @@ if($model=='create_task'){
 		fwrite($file, $bom =( chr(0xEF) . chr(0xBB) . chr(0xBF) ));
 		//告诉浏览器这个是一个csv文件  
 		$filename = "交单信息表" . date('Y-m-d', time());  
-		header("Content-Type: application/csv;charset=gb2312");  
+		header("Content-Type: application/csv;charset=UTF-8");  
 		header("Content-Disposition: attachment; filename=$filename.csv");  
 		
 		//输出表头  
@@ -602,7 +602,7 @@ if($model=='create_task'){
 		fputcsv($output, $table_head);  
 
 		for ($i=0; $i < count($row); $i++) { 
-			$e = array(($i+1),$row[$i]['name'],$row[$i]['tel'],$row[$i]['money'],$row[$i]['zfb'],$row[$i]['qq'],$row[$i]['other']);  
+			$e = array(($i+1),"\xEF\xBB\xBF".$row[$i]['name'],"\xEF\xBB\xBF".$row[$i]['tel'],$row[$i]['money'],$row[$i]['zfb'],$row[$i]['qq'],"\xEF\xBB\xBF".$row[$i]['other']);  
 			// chr(255).chr(254);
 			
 			fputcsv($output, array_values($e));
