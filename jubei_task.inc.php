@@ -602,10 +602,10 @@ if($model=='create_task'){
 		// }
 		// fclose($output) or die("can't close php://output");  
 
-		header('Content-Type: application/vnd.ms-excel;charset=utf8');
-		header('Content-Disposition: attachment; filename=test.xls');
-		header('Pragma: no-cache');
-		header('Expires: 0');
+		header('Content-Type: application/csv;charset=utf8');
+		header('Content-Disposition: attachment; filename=test.csv');
+		// header('Pragma: no-cache');
+		// header('Expires: 0');
 		$fp = fopen('php://output', 'w');
 		//输出BOM头
 		fwrite($fp, chr(0XEF) . chr(0xBB) . chr(0XBF));
