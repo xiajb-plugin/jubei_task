@@ -593,7 +593,7 @@ if($model=='create_task'){
 		fwrite($file, chr(0XEF) . chr(0xBB) . chr(0XBF));
 		//告诉浏览器这个是一个csv文件  
 		$filename = "交单信息表" . date('Y-m-d', time());  
-		header("Content-Type: application/csv;charset=utf8");  
+		header("Content-Type: application/csv;charset=ansi");  
 		header("Content-Disposition: attachment; filename=$filename.csv");  
 		
 		//输出表头  
