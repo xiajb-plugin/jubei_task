@@ -186,7 +186,7 @@
 				<item id="myrelease_1"><![CDATA[交单记录]]></item>
 				<item id="myrelease_2"><![CDATA[预约记录]]></item>
 				<item id="zhuyi"><![CDATA[1、请填写详细的做单攻略、平台名字、档位以及名额</br>
-					2、当单子为不限量单时，名额请填写0</br>
+					2、当单子为不限量单时，名额请填写足够的数量，比如说1000，10000</br>
 					3、点击旁边的增加其他档位按钮可增加其他档位以及名额</br>]]></item>
 				<item id="yuyue_zhuyi"><![CDATA[
 					1、请留下真实qq，方便单子发布人及时联系你，否则停单后做单无效，后果自负</br>
@@ -213,7 +213,7 @@
 				<item id="shuxing"><![CDATA[属性]]></item>
 				<item id="tuishou"><![CDATA[推手]]></item>
 				<item id="touziren"><![CDATA[投资人]]></item>
-
+				<item id="gerenjianjie"><![CDATA[个人简介]]></item>
 			</item>
 		</item>
 	</item>

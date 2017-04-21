@@ -334,6 +334,7 @@ if($model=='create_task'){
 		# 交单界面
 		$getid = $_GET['getid'];
 		$taskid = $_GET['taskid'];
+		$res = C::t("#jubei_task#jubei_task_list")->fetch_by_id($taskid);
 
 		if ($getid) {
 			$get_task_res = C::t("#jubei_task#jubei_task_get")->fetch_by_id($getid);
@@ -343,10 +344,10 @@ if($model=='create_task'){
 			$homelist = json_decode($res['list'],true);
 
 		}
+
 		$message = C::t("#jubei_task#jubei_task_message")->fetch_by_uid($_G['uid']);
 		
 		
-		$res = C::t("#jubei_task#jubei_task_list")->fetch_by_id($taskid);
 		$lenght = count($homelist);
 		include template('jubei_task:submit_task');
 	}
