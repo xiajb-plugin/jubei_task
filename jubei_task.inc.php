@@ -602,7 +602,7 @@ if($model=='create_task'){
 		fputcsv($output, $table_head);  
 
 		for ($i=0; $i < count($row); $i++) { 
-			$e = array(($i+1),"\xEF\xBB\xBF".$row[$i]['name'],"\xEF\xBB\xBF".$row[$i]['tel'],"\xEF\xBB\xBF".$row[$i]['money'],"\xEF\xBB\xBF".$row[$i]['zfb'],$row[$i]['qq'],"\xEF\xBB\xBF".$row[$i]['other']);  
+			$e = array(($i+1),$row[$i]['name'],$row[$i]['tel'],$row[$i]['money'],$row[$i]['zfb'],$row[$i]['qq'],$row[$i]['other']);  
 			// chr(255).chr(254);
 			
 			fputcsv($output, array_values($e));
