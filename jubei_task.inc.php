@@ -582,42 +582,42 @@ if($model=='create_task'){
 		$row = C::t("#jubei_task#jubei_task_complete")->fetch_all_taskid($taskid);
 		// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt",print_r($row,true) ,FILE_APPEND);
 
-		// $output = fopen('php://output', 'w') or die("can't open php://output");  
-		// fwrite($file, chr(0XEF) . chr(0xBB) . chr(0XBF));
-		// //告诉浏览器这个是一个csv文件  
-		// $filename = "交单信息表" . date('Y-m-d', time());  
-		// header("Content-Type: application/csv");  
-		// header("Content-Disposition: attachment; filename=$filename.csv");  
+		$output = fopen('php://output', 'w') or die("can't open php://output");  
+		fwrite($file, chr(0XEF) . chr(0xBB) . chr(0XBF));
+		//告诉浏览器这个是一个csv文件  
+		$filename = "交单信息表" . date('Y-m-d', time());  
+		header("Content-Type: application/csv;charset=utf8");  
+		header("Content-Disposition: attachment; filename=$filename.csv");  
 		
-		// //输出表头  
-		// $table_head = array('id','姓名','电话','档位', '支付宝', 'qq','备注');
+		//输出表头  
+		$table_head = array('id','姓名','电话','档位', '支付宝', 'qq','备注');
 		
-		// fputcsv($output, $table_head);  
+		fputcsv($output, $table_head);  
 
-		// for ($i=0; $i < count($row); $i++) { 
-		// 	$e = array(($i+1),$row[$i]['name'],$row[$i]['tel'],$row[$i]['money'],$row[$i]['zfb'],$row[$i]['qq'],$row[$i]['other']);  
-		// 	chr(255).chr(254);
-			
-		// 	fputcsv($output, array_values($e));
-		// }
-		// fclose($output) or die("can't close php://output");  
-
-		header('Content-Type: application/csv;charset=utf8');
-		header('Content-Disposition: attachment; filename=test.csv');
-		// header('Pragma: no-cache');
-		// header('Expires: 0');
-		$fp = fopen('php://output', 'w');
-		//输出BOM头
-		fwrite($fp, chr(0XEF) . chr(0xBB) . chr(0XBF));
-		//输出头
-		fputcsv($fp, array('id','姓名','电话','档位', '支付宝', 'qq','备注'));
 		for ($i=0; $i < count($row); $i++) { 
 			$e = array(($i+1),$row[$i]['name'],$row[$i]['tel'],$row[$i]['money'],$row[$i]['zfb'],$row[$i]['qq'],$row[$i]['other']);  
 			chr(255).chr(254);
 			
 			fputcsv($output, array_values($e));
 		}
-		fclose($fp);
+		fclose($output) or die("can't close php://output");  
+
+		// header('Content-Type: application/csv;charset=utf8');
+		// header('Content-Disposition: attachment; filename=test.csv');
+		// // header('Pragma: no-cache');
+		// // header('Expires: 0');
+		// $fp = fopen('php://output', 'w');
+		// //输出BOM头
+		// fwrite($fp, chr(0XEF) . chr(0xBB) . chr(0XBF));
+		// //输出头
+		// fputcsv($fp, array('id','姓名','电话','档位', '支付宝', 'qq','备注'));
+		// for ($i=0; $i < count($row); $i++) { 
+		// 	$e = array(($i+1),$row[$i]['name'],$row[$i]['tel'],$row[$i]['money'],$row[$i]['zfb'],$row[$i]['qq'],$row[$i]['other']);  
+		// 	chr(255).chr(254);
+			
+		// 	fputcsv($output, array_values($e));
+		// }
+		// fclose($fp);
 		exit;
 
 # 我完成的任务
