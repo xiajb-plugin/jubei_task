@@ -37,10 +37,12 @@
     </td>
 
     <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">
-
+<!--{if $home[status]==1}-->
     <a href="plugin.php?id=jubei_task&model=submit_task&getid=$home[id]">{lang jubei_task:jiaodan}</a>
     <a href="plugin.php?id=jubei_task&model=cancel_task_get&getid=$home[id]">{lang jubei_task:cancel_task_get}</a>
-
+<!--{else}-->
+    <span style="color:#009900">{lang jubei_task:end_complete}</span>
+<!--{/if}-->
 </td>
 
 </td>

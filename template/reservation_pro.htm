@@ -23,8 +23,18 @@
     <tr align="center" height="28">
     <td bgcolor="#fffac7" style="border:1px solid #ff9900;border-top:none">$home[begintime]</td>
     <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">$home[pingtai_name]</td>
-    <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">$home[money]</td>
-    <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">$home[num]</td>
+    <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">
+    <!--{loop $home[list] $key $val}-->
+    {$key}</br>
+    <!--{/loop}-->
+    </td>
+     
+    <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">
+    <!--{loop $home[list] $key $val}-->
+    {$val}</br>
+    <!--{/loop}-->
+    </td>
+
     <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">$home[qq]</td>
   </tr>
  <!--{/loop}-->

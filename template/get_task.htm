@@ -57,7 +57,12 @@
 
                         <tr style="height:32px;"  class="array">
                             <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:create_5}
-                                <input type="text" id="money" size="20" name="money1" value=""></td>
+<select id="money" name="money1">
+<!--{loop $homelist $key $val}-->
+<option value="{$key}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$key}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+<!--{/loop}-->
+</select>
+
                             <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:create_6}
                                 <input type="text" id="num" size="20" name="num1" value=""></td>
                                 <td>
@@ -88,12 +93,18 @@
                                 var length = arrays.length;
                                 var node = arrays[0];
                                 var cNode = node.cloneNode(true);
-                                var cinputs = cNode.getElementsByTagName('input')
+                                var cinputs = cNode.getElementsByTagName('input');
+                                var cselect = cNode.getElementsByTagName('select');
+
                                 for (var i = 0; i < cinputs.length; i++) {
                                     var str =cinputs[i].name;
                                     var k = str.substr(0,str.length-1)
                                     cinputs[i].name = k + '' + (length+1)
                                 }
+                                var secelt_name = cselect[0].name;
+                                var csecelt_name = secelt_name.substr(0,secelt_name.length-1);
+                                cselect[0].name = csecelt_name + '' + (length+1)
+
                                 var lasttd = cNode.children[cNode.children.length-1]
 
                                     lasttd.parentNode.removeChild(lasttd);

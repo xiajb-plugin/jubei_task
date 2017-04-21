@@ -188,9 +188,9 @@
 				<item id="zhuyi"><![CDATA[1、请填写详细的做单攻略、平台名字、档位以及名额</br>
 					2、当单子为不限量单时，名额请填写0</br>
 					3、点击旁边的增加其他档位按钮可增加其他档位以及名额</br>]]></item>
-				<item id="yuyue_zhuyi"><![CDATA[1、预约档位请填写数字1000，10000，请不要填写1k，1w，否则会系统识别错误，导致预约失败</br>
-					2、请留下真实qq，方便单子发布人及时联系你，否则停单后做单无效，后果自负</br>
-					3、点击旁边的增加其他档位按钮可增加其他档位以及名额</br>]]></item>
+				<item id="yuyue_zhuyi"><![CDATA[
+					1、请留下真实qq，方便单子发布人及时联系你，否则停单后做单无效，后果自负</br>
+					2、点击旁边的增加其他档位按钮可增加其他档位以及名额</br>]]></item>
 				<item id="ziliao_zhuyi"><![CDATA[1、请填写真实qq和支付宝，方便推手直接打款</br>
 					2、交单时会自动识别你所填写的支付宝和qq</br>
 					3、支付宝和qq如有改变，可直接修改</br>]]></item>
@@ -205,12 +205,12 @@
 				<item id="wanshanziliao"><![CDATA[【请完善资料！！！】]]></item>
 				<item id="yuyue_time"><![CDATA[预约时间]]></item>
 				<item id="update_task"><![CDATA[修改任务]]></item>
-				<item id="cancel_task_get"><![CDATA[退单]]></item>
+				<item id="cancel_task_get"><![CDATA[【退单】]]></item>
 				<item id="cancel_get"><![CDATA[取消预约]]></item>
 				<item id="shengyu_minge"><![CDATA[剩余名额]]></item>
 				<item id="yuyue_minge"><![CDATA[预约名额]]></item>
 				<item id="jianjie"><![CDATA[简介]]></item>
-
+				<item id="end_complete"><![CDATA[已完成]]></item>
 			</item>
 		</item>
 	</item>
