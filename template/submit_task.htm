@@ -87,9 +87,12 @@
                             <td>&nbsp;{lang jubei_task:create_5}
                              {$key}
                             
-                            
+        <!--{if ($res['type'] == 0)}-->                    
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{lang jubei_task:yuyue_minge}
                                 {$val}</td>
+        <!--{else}-->
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <!--{/if}-->
                         </tr>
 
 

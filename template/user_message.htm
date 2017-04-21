@@ -10,60 +10,33 @@
 <div class="table">
 
     <div style="padding: 0 10px 10px;">
-     <form action="plugin.php?id=jubei_task&model=mymessage" name="addhome" method="post">
         <table cellspacing="0" cellpadding="4" border="0" width="95%">
-            <tr style="height:32px;">
-               
-                    <td>
-                        <input type="hidden" name="formhash" value="{FORMHASH}">
-                    </td>
-            </tr>
+			{lang jubei_task:gerenjianjie}
 
             <tr style="height:38px;">
                 <td>
                     <span style="color:red;">*</span>&nbsp;{lang jubei_task:shuxing}
-                    <input type="radio" name="type" value="0" checked>{lang jubei_task:tuishou}
-                    <input type="radio" name="type" value="1">{lang jubei_task:touziren}
+    <!--{if $res[type] == 1}-->
+    {lang jubei_task:tuishou}
+    <!--{else}-->
+	{lang jubei_task:touziren}
+    <!--{/if}-->
                 </td>
             </tr>
             <tr style="height:32px;">
                 <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:zfb}
-                    <input type="text" id="zfb" size="20" name="zfb" value="{$res['zfb']}"></td>
+                    $res['zfb']}
             </tr>
 
             <tr style="height:32px;">
                 <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:qq}
-                    <input type="text" id="qq" size="20" name="qq" value="{$res['qq']}"></td>
+                    {$res['qq']}
             </tr>
-                <div class="area">
-                    <textarea rows="6" cols="80" name="message" placeholder="个人简介" id="message"
-                              onkeydown="seditor_ctlent(event, '$(\'fastpostsubmit\').click()');" tabindex="12"
-                              class="pt"></textarea>
-                </div>
 
 
-    <script type="text/javascript">
-                function validate_check(){
-
-                    if (document.getElementById("zfb").value == '') {
-                        alert("请填写支付宝！");
-                        return false;
-                    }
-                    if (document.getElementById("qq").value == '') {
-                        alert("请填写qq！");
-                        return false;
-                    }
-                   
-                }
-    </script>
 
 
-            <tr style="height:30px;" id="before">
-                <td><input type="submit" name="submit_message" onclick="return validate_check();" value="提交">&nbsp;&nbsp;&nbsp;&nbsp;
-                </td>
-            </tr>
         </table>
-        </form>
                 </div>
                         <tr>
                             <td>

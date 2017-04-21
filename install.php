@@ -65,7 +65,8 @@ CREATE TABLE IF NOT EXISTS `pre_jubei_task_message` (
   `username` varchar(255) NOT NULL,
   `qq` varchar(16) NOT NULL,    
   `zfb` varchar(32) NOT NULL,
-
+  `message` text,
+  `type` tinyint(1) NOT NULL default '0',
   PRIMARY KEY (`id`)
 );
 

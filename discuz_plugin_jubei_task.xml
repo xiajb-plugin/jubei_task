@@ -210,7 +210,10 @@
 				<item id="shengyu_minge"><![CDATA[剩余名额]]></item>
 				<item id="yuyue_minge"><![CDATA[预约名额]]></item>
 				<item id="jianjie"><![CDATA[简介]]></item>
-				<item id="end_complete"><![CDATA[已完成]]></item>
+				<item id="shuxing"><![CDATA[属性]]></item>
+				<item id="tuishou"><![CDATA[推手]]></item>
+				<item id="touziren"><![CDATA[投资人]]></item>
+
 			</item>
 		</item>
 	</item>

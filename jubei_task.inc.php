@@ -102,15 +102,14 @@ if($model=='create_task'){
 		$uid = $_G['uid'];
 		$res = C::t("#jubei_task#jubei_task_message")->fetch_by_uid($uid);
 		# 如果个人信息为空，插入，否则update
+		$message = $_POST['message'];
+		$type = $_POST['type'];
+		$zfb = $_POST['zfb'];
+		$qq = $_POST['qq'];
+		$data = array("zfb"=>$zfb,"qq"=>$qq,"uid"=>$_G['uid'],"username"=>$_G['username'],"message"=>$message,"type"=>$type);
 		if (empty($res)) {
-			$zfb = $_POST['zfb'];
-			$qq = $_POST['qq'];
-			$data = array("zfb"=>$zfb,"qq"=>$qq,"uid"=>$_G['uid'],"username"=>$_G['username']);
 			C::t("#jubei_task#jubei_task_message")->insert($data);
 		}else{
-			$zfb = $_POST['zfb'];
-			$qq = $_POST['qq'];
-			$data = array("zfb"=>$zfb,"qq"=>$qq,"uid"=>$_G['uid'],"username"=>$_G['username']);
 			C::t("#jubei_task#jubei_task_message")->update_by_id($data);
 		}
 		showmessage(lang('plugin/jubei_task','message_success'),'plugin.php?id=jubei_task');
@@ -340,12 +339,14 @@ if($model=='create_task'){
 			$get_task_res = C::t("#jubei_task#jubei_task_get")->fetch_by_id($getid);
 			$taskid = $get_task_res['taskid'];
 			$homelist = json_decode($get_task_res['list'],true);
+		}else{
+			$homelist = json_decode($res['list'],true);
+
 		}
 		$message = C::t("#jubei_task#jubei_task_message")->fetch_by_uid($_G['uid']);
 		
 		
 		$res = C::t("#jubei_task#jubei_task_list")->fetch_by_id($taskid);
-		$homelist = json_decode($res['list'],true);
 		$lenght = count($homelist);
 		include template('jubei_task:submit_task');
 	}
@@ -544,7 +545,10 @@ if($model=='create_task'){
 	}else{
 		$getid = $_GET['getid'];
 		$res = C::t("#jubei_task#jubei_task_get")->fetch_by_id($getid);
+
 		$taskid = $res['taskid'];
+		$homelist = C::t("#jubei_task#jubei_task_list")->fetch_by_id($taskid);
+		$homelist['list'] = json_decode($res['list'],true);
 		include template('jubei_task:cancel_task_get');
 	}
 
@@ -702,6 +706,11 @@ if($model=='create_task'){
 		$lenght = count($homelist);
 		include template('jubei_task:update_task');
 	}
+
+}else if($model=='user_message'){
+	$user_id = $_GET['user'];
+	$res = C::t("#jubei_task#jubei_task_message")->fetch_by_uid($user_id);
+	include template('jubei_task:user_message');
 
 }else {
 
