@@ -597,7 +597,7 @@ if($model=='create_task'){
 		header("Content-Disposition: attachment; filename=$filename.csv");  
 		
 		//输出表头  
-		$table_head = array('id','姓名','电话','档位', '支付宝', 'qq','备注');
+		$table_head = iconv('utf-8','GB18030',array('id','姓名','电话','档位', '支付宝', 'qq','备注'));
 		
 		fputcsv($output, $table_head);  
 
