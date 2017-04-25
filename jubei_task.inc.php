@@ -597,13 +597,19 @@ if($model=='create_task'){
 		header("Content-Disposition: attachment; filename=$filename.csv");  
 		
 		//输出表头  
-		$table_head = iconv('utf-8','GB18030',array('id','姓名','电话','档位', '支付宝', 'qq','备注'));
+		$table_head = array('id','姓名','电话','档位', '支付宝', 'qq','备注');
+		for ($k=0; $k < count($table_head); $k++) { 
+			$table_head[$k] = iconv('utf-8','GB18030',$table_head[$k]);
+		}
+
+		
 		
 		fputcsv($output, $table_head);  
 
 		for ($i=0; $i < count($row); $i++) { 
 			$row[$i]['name'] = iconv('utf-8','GB18030',$row[$i]['name']);
 			$row[$i]['other'] = iconv('utf-8','GB18030',$row[$i]['other']);
+			$row[$i]['money'] = iconv('utf-8','GB18030',$row[$i]['money']);
 			$e = array(($i+1),$row[$i]['name'],$row[$i]['tel'],$row[$i]['money'],$row[$i]['zfb'],$row[$i]['qq'],$row[$i]['other']);  
 			// chr(255).chr(254);
 			

@@ -100,8 +100,9 @@
 
 
                     </table>
-<!--{if ($res['status'] == 1)}-->
-
+<!--{if ($res['status'] == 0 && $res['type'] == 1)}-->
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<!--{else}-->
 <form action="plugin.php?id=jubei_task&model=submit_task" name="addhome" method="post">
                     <table cellspacing="0" cellpadding="4" border="0" width="95%">
                         <tr style="height:32px;">
