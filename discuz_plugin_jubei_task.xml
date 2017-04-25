@@ -127,6 +127,8 @@
 				<item id="get_money_error"><![CDATA[预约档位不正确]]></item>
 				<item id="get_task_error"><![CDATA[预约任务出错！！！]]></item>
 				<item id="zanting_task"><![CDATA[所选择的任务已经暂停！]]></item>
+				<item id="sublimt_task_error2"><![CDATA[交单数量大于领取名额数量！！！]]></item>
+				<item id="sublimt_task_error"><![CDATA[交单档位不正确！！！]]></item>
 			</item>
 			<item id="templatelang">
 				<item id="zhuangtai"><![CDATA[【状态】]]></item>
