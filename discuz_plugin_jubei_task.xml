@@ -129,6 +129,8 @@
 				<item id="zanting_task"><![CDATA[所选择的任务已经暂停！]]></item>
 				<item id="sublimt_task_error2"><![CDATA[交单数量大于领取名额数量！！！]]></item>
 				<item id="sublimt_task_error"><![CDATA[交单档位不正确！！！]]></item>
+				<item id="cancel_task_get_error"><![CDATA[取消任务失败]]></item>
+				<item id="password_error"><![CDATA[密码错误！！！]]></item>
 			</item>
 			<item id="templatelang">
 				<item id="zhuangtai"><![CDATA[【状态】]]></item>
@@ -216,6 +218,9 @@
 				<item id="tuishou"><![CDATA[推手]]></item>
 				<item id="touziren"><![CDATA[投资人]]></item>
 				<item id="gerenjianjie"><![CDATA[个人简介]]></item>
+				<item id="yuedan"><![CDATA[约单]]></item>
+				<item id="password"><![CDATA[做单密码（可为空）]]></item>
+				<item id="jiaodan_and_tuidan"><![CDATA[交单／退单]]></item>
 			</item>
 		</item>
 	</item>

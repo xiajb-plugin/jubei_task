@@ -123,10 +123,13 @@
                             <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:qq}
                                 <input type="text" id="qq" size="20" name="qq" value="{$message['qq']}"></td>
                         </tr>
-
-
+<!--{if ($res['password'] != '' )}--> 
+                        <tr style="height:32px;">
+                            <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:my_password}
+                                <input type="text" id="password" size="20" name="password" value=""></td>
+                        </tr>
              
-
+<!--{/if}-->
                         <tr style="height:32px;"  class="array">
                             <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:name}
                                 <input type="text" id="name" size="20" name="name1" value=""></td>

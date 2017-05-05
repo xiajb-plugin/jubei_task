@@ -54,6 +54,13 @@
                             <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:get_task2}
                                 <input type="text" id="qq" size="20" name="qq" value="{$my_message['qq']}"></td>
                         </tr>
+<!--{if ($res['password'] != '' )}--> 
+                        <tr style="height:32px;">
+                            <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:my_password}
+                                <input type="text" id="password" size="20" name="password" value=""></td>
+                        </tr>
+             
+<!--{/if}-->
 
                         <tr style="height:32px;"  class="array">
                             <td><span style="color:red;">*</span>&nbsp;{lang jubei_task:create_5}
