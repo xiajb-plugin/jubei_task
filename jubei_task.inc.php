@@ -53,7 +53,6 @@ if($model=='create_task'){
 			$message = $data['message'];
 			$pingtai_name = $data['pingtai_name'];
 			$type = $data['type'];
-
 			$note = $data['note'];
 			
 			$data = array_filter($data);
@@ -220,7 +219,18 @@ if($model=='create_task'){
 		$get_data = file_get_contents("php://input");
 		parse_str($get_data, $data);
 		$data = array_filter($data);
-		// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", print($data,true),FILE_APPEND);
+
+		$task_res = C::t("#jubei_task#jubei_task_list")->fetch_by_id($data['taskid']);
+		// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt",print_r($task_res,true),FILE_APPEND);
+		// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt",print_r($data,true),FILE_APPEND);
+		if ($task_res['password'] != '') {
+			if ($data['password'] != $task_res['password']) {
+				showmessage(lang('plugin/jubei_task','password_error'),'plugin.php?id=jubei_task&model=mycomplete');
+				exit;
+			}
+		}
+
+		
 		$username = $_G['username'];
 		$uid = $_G['uid'];
 		$password = $data['password'];
@@ -229,12 +239,12 @@ if($model=='create_task'){
 		$qq = $data['qq'];
 		$other = $data['other'];
 		$taskid = $data['taskid'];
-		$task_res = C::t("#jubei_task#jubei_task_list")->fetch_by_id($taskid);
+		
 
 		if (isset($data['password'])) {
 			$password = $data['password'];
 			unset($data['password'],$data['taskid'],$data['getid'],$data['zfb'],$data['qq'],$data['other'],$data['formhash'],$data['submit_task']);
-			if ($password !=$task_res['password']) {
+			if ($password != $task_res['password']) {
 				showmessage(lang('plugin/jubei_task','password_error'),'plugin.php?id=jubei_task&model=mycomplete');
 				exit;
 			}
@@ -386,9 +396,17 @@ if($model=='create_task'){
 		$qq = $data['qq'];
 		$username = $_G['username'];
 		$uid = $_G['uid'];
-		$data = array_filter($data);
-		
+
 		$task_res = C::t("#jubei_task#jubei_task_list")->fetch_by_id($taskid); #根据taskid取出当前任务的数量信息
+		if ($task_res['password'] != '') {
+			if ($data['password'] !=$task_res['password']) {
+				showmessage(lang('plugin/jubei_task','password_error'),'plugin.php?id=jubei_task&model=mycomplete');
+				exit;
+			}
+		}
+
+		$data = array_filter($data);
+
 
 		if (isset($data['password'])) {
 			$password = $data['password'];
@@ -704,9 +722,24 @@ if($model=='create_task'){
 			$type = $data['type'];
 			$note = $data['note'];
 			$taskid = $data['taskid'];
+
 			$data = array_filter($data);
-	 
-			unset($data['taskid'],$data['note'],$data['message'],$data['pingtai_name'],$data['type'],$data['formhash'],$data['create_submit']);
+
+
+			if (isset($data['password'])) {
+				$password = $data['password'];
+
+				unset($data['password'],$data['taskid'],$data['note'],$data['message'],$data['pingtai_name'],$data['type'],$data['formhash'],$data['create_submit']);
+
+				if ($password != $task_res['password']) {
+					showmessage(lang('plugin/jubei_task','password_error'),'plugin.php?id=jubei_task&model=mycomplete');
+					exit;
+				}
+			}else{
+				$password = '';
+				unset($data['taskid'],$data['note'],$data['message'],$data['pingtai_name'],$data['type'],$data['formhash'],$data['create_submit']);
+			}
+
 
 			$lenght = count($data)/2;
 			$new_data = array();
@@ -727,6 +760,7 @@ if($model=='create_task'){
 				'pingtai_name'=>$pingtai_name,
 				'list' => $list,
 				'taskremark'=>$message, 
+				'password'=>$password,
 				'username'=>$_G['username'], 
 				'note'=>$note,
 				'uid'=>$_G['uid'], 

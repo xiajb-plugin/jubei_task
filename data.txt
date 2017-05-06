@@ -1,17 +1,44 @@
-Array
+11admin1丝的粉丝{"1000":"1000"}是对的粉丝的 v123qwedsfsdf啊受到粉丝粉丝的粉丝05-06 22:0610Array
 (
     [id] => 1
-    [taskid] => 1
     [uid] => 1
-    [qq] => 343534534
     [username] => admin
-    [list] => {"1000":"2"}
-    [begintime] => 04-21 20:22
+    [type] => 1
+    [pingtai_name] => 丝的粉丝
+    [list] => {"1000":"1000"}
+    [note] => 是对的粉丝的 v
+    [password] => 123qwe
+    [taskremark] => dsfsdf啊受到粉丝粉丝的粉丝
+    [begintime] => 05-06 22:06
     [endtime] => 
     [status] => 1
     [islog] => 0
 )
-"{\"1000\":10}"Array
+Array
 (
-    [1000] => 10
+    [id] => 1
+    [uid] => 1
+    [username] => admin
+    [type] => 1
+    [pingtai_name] => 丝的粉丝
+    [list] => {"1000":"1000"}
+    [note] => 是对的粉丝的 v
+    [password] => 123qwe
+    [taskremark] => dsfsdf啊受到粉丝粉丝的粉丝
+    [begintime] => 05-06 22:06
+    [endtime] => 
+    [status] => 1
+    [islog] => 0
+)
+Array
+(
+    [formhash] => b0979ee9
+    [taskid] => 1
+    [zfb] => 15607101196
+    [qq] => 12312312312
+    [password] => 123qwe
+    [name1] => asfdas
+    [tel1] => 15607101196
+    [money1] => 1000
+    [submit_task] => 提交
 )

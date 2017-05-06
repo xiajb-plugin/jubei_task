@@ -13,14 +13,22 @@
 <div class="table">
 <table width="720" cellspacing="1" cellpadding="0">
   <tbody><tr align="center">
+    <td width="10%" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>id</strong></td>
     <td width="20%" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:index1}</strong></td>
-    <td width="20%" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:index2}</strong></td>
+    <td width="10%" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:index2}</strong></td>
     <td width="20%" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:index3}</strong></td>
-    <td width="20%" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:index4}</strong></td>
+    <td width="20%" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:jianjie}</strong></td>
     <td width="20%" background="source/plugin/jubei_task/images/bj.jpg" height="30"><strong>{lang jubei_task:index5}</strong></td>
   </tr>
   <!--{loop $homelist $home}-->
     <tr align="center" height="28">
+    <td bgcolor="#fffac7" style="border:1px solid #ff9900;border-top:none">$home[id]
+<!--{if $home[password] == ''}-->
+    &nbsp;
+<!--{else}-->
+    <span style="color: red;">(密码)</span>
+<!--{/if}-->
+    </td>
     <td bgcolor="#fffac7" style="border:1px solid #ff9900;border-top:none">$home[begintime]</td>
     <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none"><a style="color:#009900" href="plugin.php?id=jubei_task&model=user_message&user=$home[uid]">$home[username]</a></td>
     <td bgcolor="#ffffff" style="border:1px solid #ff9900;border-top:none">$home[pingtai_name]</td>

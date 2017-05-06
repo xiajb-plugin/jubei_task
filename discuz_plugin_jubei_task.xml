@@ -220,6 +220,7 @@
 				<item id="gerenjianjie"><![CDATA[个人简介]]></item>
 				<item id="yuedan"><![CDATA[约单]]></item>
 				<item id="password"><![CDATA[做单密码（可为空）]]></item>
+				<item id="my_password"><![CDATA[特定密码]]></item>
 				<item id="jiaodan_and_tuidan"><![CDATA[交单／退单]]></item>
 			</item>
 		</item>
