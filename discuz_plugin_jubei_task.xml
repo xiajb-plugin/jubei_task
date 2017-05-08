@@ -222,6 +222,7 @@
 				<item id="password"><![CDATA[做单密码（可为空）]]></item>
 				<item id="my_password"><![CDATA[特定密码]]></item>
 				<item id="jiaodan_and_tuidan"><![CDATA[交单／退单]]></item>
+				<item id="shuju"><![CDATA[数据]]></item>
 			</item>
 		</item>
 	</item>
