@@ -103,15 +103,15 @@
                     var before = document.getElementById('before');
                     node.parentNode.insertBefore(cNode, before);
                 }
-    function validate(obj) {
-    // validate_check();  
-       edit_save();  
- 
-    window.onbeforeunload = null;  
-    obj.form.submit();  
+                function validate(obj) {
+                    // validate_check();  
+                       edit_save();  
+                 
+                    window.onbeforeunload = null;  
+                    obj.form.submit();  
 
-    return false;  
-} 
+                    return false;  
+                } 
                 function validate_check(){
                     if (document.getElementById("message").value == '') {
                         alert("请填写做单攻略！");
