@@ -21,6 +21,13 @@
                         <input type="hidden" name="taskid" value="{$res[id]}">
                     </td>
             </tr>
+            <tr>
+<script type="text/javascript" language="javascript" src="{STATICURL}image/editor/editor_function.js?{VERHASH}"></script>
+         <textarea class="userData" name="message" id="uchome-ttHtmlEditor" style="height: 100%; width: 100%; display: none; border: 0px">$res[taskremark]</textarea>
+         <iframe src="home.php?mod=editor&charset={CHARSET}&allowhtml=1&isportal=0" name="uchome-ifrHtmlEditor" id="uchome-ifrHtmlEditor" scrolling="no" border="0" frameborder="0" style="width:700px;height:150px;border:1px solid #C5C5C5;position:relative;"></iframe>
+
+           
+            </tr>
 <!--             <tr style="height:38px;">
                 <td>
                     <span style="color:red;">*</span>&nbsp;{lang jubei_task:create_1}
@@ -82,6 +89,15 @@
 
 
             <script type="text/javascript">
+                function validate(obj) {
+                    // validate_check();  
+                       edit_save();  
+                 
+                    window.onbeforeunload = null;  
+                    obj.form.submit();  
+
+                    return false;  
+                } 
                 function myFunction() {
                     var arrays = document.getElementsByClassName("array")
                     var length = arrays.length;
@@ -126,42 +142,11 @@
                 }
 
             </script>
-            <div class="tedt">
-                <div class="bar">
-                                <span class="y">
-                                </span>
 
-                    <script src="static/js/seditor.js?b0l" type="text/javascript"></script>
-                    <div class="fpd">
-                        <a href="javascript:;" title="ÎÄ×Ö¼Ó´Ö" class="fbld"
-                           onclick="seditor_insertunit('fastpost', '[b]', '[/b]');doane(event);">B</a>
-                        <a href="javascript:;" title="ÉèÖÃÎÄ×ÖÑÕÉ«" class="fclr" id="fastpostforecolor"
-                           onclick="showColorBox(this.id, 2, 'fastpost');doane(event);">Color</a>
-                        <a id="fastpostimg" href="javascript:;" title="Í¼Æ¬" class="fmg"
-                           onclick="seditor_menu('fastpost', 'img');doane(event);">Image</a>
-                        <a id="fastposturl" href="javascript:;" title="Ìí¼ÓÁ´½Ó" class="flnk"
-                           onclick="seditor_menu('fastpost', 'url');doane(event);">Link</a>
-                        <a id="fastpostquote" href="javascript:;" title="ÒýÓÃ" class="fqt"
-                           onclick="seditor_menu('fastpost', 'quote');doane(event);">Quote</a>
-                        <a id="fastpostcode" href="javascript:;" title="´úÂë" class="fcd"
-                           onclick="seditor_menu('fastpost', 'code');doane(event);">Code</a>
-                        <a href="javascript:;" class="fsml" id="fastpostsml"
-                           onclick="showMenu({'ctrlid':this.id,'evt':'click','layer':2});return false;">Smilies</a>
-                        <script type="text/javascript" reload="1">
-                            smilies_show('fastpostsmiliesdiv', 8, 'fastpost');
-                        </script>
-                        <script src="static/js/at.js?b0l" type="text/javascript"></script>
-                        <span class="pipe z">|</span>
-                    </div>
-                </div>
-                <div class="area">
-                    <textarea rows="6" cols="80" name="message" placeholder="攻略" id="message"
-                              onkeydown="seditor_ctlent(event, '$(\'fastpostsubmit\').click()');" tabindex="12"
-                              class="pt">$res[taskremark]</textarea>
-                </div>
-            </div>
             <tr style="height:30px;" id="before">
-                <td><input type="submit" name="update_submit" onclick="return validate_check();" value="提交">&nbsp;&nbsp;&nbsp;&nbsp;
+                <td>
+                <button class="pn vm" type="submit" name="update_submit" value="yes" onclick="validate(this);"><em>提交</em></button>
+                <!-- <input type="submit" name="update_submit" onclick="return validate_check();" value="提交">&nbsp;&nbsp;&nbsp;&nbsp; -->
                 </td>
             </tr>
         </table>

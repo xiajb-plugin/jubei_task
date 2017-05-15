@@ -1,44 +1,229 @@
-11admin1丝的粉丝{"1000":"1000"}是对的粉丝的 v123qwedsfsdf啊受到粉丝粉丝的粉丝05-06 22:0610Array
+Array
 (
-    [id] => 1
-    [uid] => 1
-    [username] => admin
-    [type] => 1
-    [pingtai_name] => 丝的粉丝
-    [list] => {"1000":"1000"}
-    [note] => 是对的粉丝的 v
-    [password] => 123qwe
-    [taskremark] => dsfsdf啊受到粉丝粉丝的粉丝
-    [begintime] => 05-06 22:06
-    [endtime] => 
-    [status] => 1
-    [islog] => 0
+    [message] => 
+    [formhash] => cf1ae8a9
+    [type] => 0
+    [pingtai_name] => asd
+    [password] => 
+    [note] => asds
+    [money1] => 111
+    [num1] => 1
+    [create_submit] => 提交
 )
 Array
 (
-    [id] => 1
-    [uid] => 1
-    [username] => admin
-    [type] => 1
-    [pingtai_name] => 丝的粉丝
-    [list] => {"1000":"1000"}
-    [note] => 是对的粉丝的 v
-    [password] => 123qwe
-    [taskremark] => dsfsdf啊受到粉丝粉丝的粉丝
-    [begintime] => 05-06 22:06
-    [endtime] => 
-    [status] => 1
-    [islog] => 0
+    [message] => 
+    [formhash] => cf1ae8a9
+    [type] => 0
+    [pingtai_name] => sdf
+    [password] => 
+    [note] => sdf
+    [money1] => 11
+    [num1] => 1
+    [create_submit] => 提交
 )
 Array
 (
-    [formhash] => b0979ee9
-    [taskid] => 1
-    [zfb] => 15607101196
-    [qq] => 12312312312
-    [password] => 123qwe
-    [name1] => asfdas
-    [tel1] => 15607101196
-    [money1] => 1000
-    [submit_task] => 提交
+    [message] => 
+    [formhash] => cf1ae8a9
+    [type] => 0
+    [pingtai_name] => asd
+    [password] => 
+    [note] => asdas
+    [money1] => 111
+    [num1] => 1
+    [create_submit] => yes
 )
+Array
+(
+    [message] => asdasdas
+    [formhash] => cf1ae8a9
+    [type] => 0
+    [pingtai_name] => asdas
+    [password] => 
+    [note] => asdas
+    [money1] => asd
+    [num1] => asd
+    [create_submit] => yes
+)
+asdasdasArray
+(
+    [message] => asdasdas
+    [formhash] => cf1ae8a9
+    [type] => 0
+    [pingtai_name] => asdas
+    [password] => 
+    [note] => asd
+    [money1] => asd
+    [num1] => asd
+    [create_submit] => yes
+)
+asdasdasArray
+(
+    [message] => asdas
+    [formhash] => cf1ae8a9
+    [type] => 0
+    [pingtai_name] => 
+    [password] => 
+    [note] => 
+    [money1] => 
+    [num1] => 
+    [create_submit] => yes
+)
+asdasArray
+(
+    [message] => asdasd
+    [formhash] => cf1ae8a9
+    [type] => 0
+    [pingtai_name] => 
+    [password] => 
+    [note] => 
+    [money1] => 
+    [num1] => 
+    [create_submit] => yes
+)
+asdasdArray
+(
+    [message] => asdas
+    [formhash] => cf1ae8a9
+    [type] => 0
+    [pingtai_name] => 
+    [password] => 
+    [note] => 
+    [money1] => 
+    [num1] => 
+    [create_submit] => yes
+)
+asdasArray
+(
+    [message] => asd
+    [formhash] => cf1ae8a9
+    [type] => 0
+    [pingtai_name] => 
+    [password] => 
+    [note] => 
+    [money1] => 
+    [num1] => 
+    [create_submit] => yes
+)
+asdArray
+(
+    [message] => sdfsd
+    [formhash] => cf1ae8a9
+    [type] => 0
+    [pingtai_name] => 
+    [password] => 
+    [note] => 
+    [money1] => 
+    [num1] => 
+    [create_submit] => yes
+)
+sdfsdArray
+(
+    [message] => sdfsdf
+    [formhash] => cf1ae8a9
+    [type] => 0
+    [pingtai_name] => 
+    [password] => 
+    [note] => 
+    [money1] => 
+    [num1] => 
+    [create_submit] => yes
+)
+sdfsdfArray
+(
+    [message] => asdasda
+    [formhash] => cf1ae8a9
+    [type] => 0
+    [pingtai_name] => 
+    [password] => 
+    [note] => 
+    [money1] => 
+    [num1] => 
+    [create_submit] => yes
+)
+asdasdaArray
+(
+    [message] => 
+    [formhash] => cf1ae8a9
+    [type] => 0
+    [pingtai_name] => 
+    [password] => 
+    [note] => 
+    [money1] => 
+    [num1] => 
+    [create_submit] => yes
+)
+Array
+(
+    [message] => 
+    [formhash] => cf1ae8a9
+    [type] => 1
+    [pingtai_name] => adsda
+    [password] => 
+    [note] => asdas
+    [money1] => 111
+    [num1] => 111
+    [create_submit] => yes
+)
+Array
+(
+    [message] => 
+    [formhash] => cf1ae8a9
+    [type] => 1
+    [pingtai_name] => asda
+    [password] => 
+    [note] => dasda
+    [money1] => sdasd
+    [num1] => asa
+    [create_submit] => yes
+)
+Array
+(
+    [message] => falseasdasdasda<div>sdasdasd</div><div>asdasd</div><div>http://www.baidu.com<span class="Apple-tab-span" style="white-space:pre">	</span>asdas</div><div>asda</div>
+    [formhash] => cf1ae8a9
+    [type] => 0
+    [pingtai_name] => sd
+    [password] => 
+    [note] => qwe
+    [money1] => qweqw
+    [num1] => qw
+    [create_submit] => yes
+)
+falseasdasdasda<div>sdasdasd</div><div>asdasd</div><div>http://www.baidu.com<span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span>asdas</div><div>asda</div>Array
+(
+    [message] => sfsdfsdfsdf<div>sdfsdf</div><div><a href="http://www.baidu.com">www.baidu.com<span class="Apple-tab-span" style="white-space:pre">	</span></a>sdfsdfsd</div><div>asdasda</div><div>asd</div>
+    [formhash] => cf1ae8a9
+    [type] => 1
+    [pingtai_name] => sdf
+    [password] => 
+    [note] => sdf
+    [money1] => sdf
+    [num1] => sdf
+    [create_submit] => yes
+)
+sfsdfsdfsdf<div>sdfsdf</div><div><a href=\"http://www.baidu.com\">www.baidu.com<span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span></a>sdfsdfsd</div><div>asdasda</div><div>asd</div>Array
+(
+    [message] => sdfsdfsdfsdfs<div>sdfsdfsd</div><div>a<a href="www.baidu.com"><font color="#f00000">更受到粉丝的</font></a></div><div><font color="#f00000">zhuyi&nbsp;<br></font><div><br></div></div>
+    [formhash] => cf1ae8a9
+    [type] => 1
+    [pingtai_name] => sdf
+    [password] => 
+    [note] => sdf
+    [money1] => sdfs
+    [num1] => sdf
+    [create_submit] => yes
+)
+sdfsdfsdfsdfs<div>sdfsdfsd</div><div>a<a href=\"www.baidu.com\"><font color=\"#f00000\">更受到粉丝的</font></a></div><div><font color=\"#f00000\">zhuyi&nbsp;<br></font><div><br></div></div>Array
+(
+    [message] => sdfsdfsd<div>s<a href="http://www.baidu.com"><font color="#f00000">是的开发模式的</font></a></div><div>萨达萨达</div>
+    [formhash] => cf1ae8a9
+    [type] => 1
+    [pingtai_name] => s d f s d
+    [password] => 
+    [note] => s d f
+    [money1] => f s d
+    [num1] => s d
+    [create_submit] => yes
+)
+sdfsdfsd<div>s<a href=\"http://www.baidu.com\"><font color=\"#f00000\">是的开发模式的</font></a></div><div>萨达萨达</div>
