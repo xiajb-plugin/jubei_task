@@ -46,7 +46,7 @@ if($model=='create_task'){
     // if (($is_true ==1) && ($is_gold== 1)) {
     	# code...
 
-		if(submitcheck('create_submit') && $is_gold && $is_gold){
+		if(submitcheck('create_submit') && $is_gold && $is_true){
 			$get_data = file_get_contents("php://input");
 			parse_str($get_data, $data);
 
@@ -789,7 +789,7 @@ if($model=='create_task'){
 	include template('jubei_task:user_message');
 
 }else {
-	if ($is_gold && $is_gold) {
+	if ($is_gold && $is_true) {
 		$is_register = 1;
 
 
