@@ -389,7 +389,7 @@ if($model=='create_task'){
 }else if($model=='get_task'){
 
 	# 预约任务。，提交表单
-	if(submitcheck('get_task_submit')){
+	if(submitcheck('get_task_submit') && $is_gold && $is_gold){
 		$get_data = file_get_contents("php://input");
 		parse_str($get_data, $data);
 
@@ -789,18 +789,23 @@ if($model=='create_task'){
 	include template('jubei_task:user_message');
 
 }else {
+	if ($is_gold && $is_gold) {
+		$is_register = 1;
 
 
-    $page = daddslashes($_GET['page']);
-	$currpage=$page?$page:1;
-	
-	$num=C::t("#jubei_task#jubei_task_list")->count_by_log();
-	$start=($currpage-1)*$perpage;
-	$homelist=C::t("#jubei_task#jubei_task_list")->fetch_all_by_log($start,$perpage);
+	    $page = daddslashes($_GET['page']);
+		$currpage=$page?$page:1;
+		
+		$num=C::t("#jubei_task#jubei_task_list")->count_by_log();
+		$start=($currpage-1)*$perpage;
+		$homelist=C::t("#jubei_task#jubei_task_list")->fetch_all_by_log($start,$perpage);
 
-	$paging = helper_page :: multi($num, $perpage, $currpage, 'plugin.php?id=jubei_task&model=index', 0, 10, false, false);
-	// C::t("#jubei_task#jubei_task_list")->fetch_all_by_log($start,$limit);
-	include template('jubei_task:index');
+		$paging = helper_page :: multi($num, $perpage, $currpage, 'plugin.php?id=jubei_task&model=index', 0, 10, false, false);
+		// C::t("#jubei_task#jubei_task_list")->fetch_all_by_log($start,$limit);
+		include template('jubei_task:index');
+	}else{
+		$is_register = 0;
+	}
 }
 
 
