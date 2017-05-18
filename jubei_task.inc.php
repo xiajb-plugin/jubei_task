@@ -20,26 +20,19 @@ $perpage=10;
 $model = daddslashes($_GET['model']);
 $complete_group = unserialize($_G['cache']['plugin']['jubei_task']['complete_group']);
 
-// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", print_r($complete_group,true),FILE_APPEND);
 
-// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", '-my-'.print_r($_G['groupid'],true),FILE_APPEND);
-
-// is_login();
-// $gold = $_G['cache']['plugin']['jubei_task']['gold'];
+$gold = $_G['cache']['plugin']['jubei_task']['gold'];
 #我的金币
 
 $mygold = C::t("#jubei_task#jubei_task_list")->fetch_extcredits($_G['uid']);
 
 
-	if (in_array($_G['member']['groupid'],$complete_group)) {
+	if (in_array($_G['groupid'],$complete_group)) {
 		# 允许推单
 		$is_true=1;
-		file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", 'is_true',FILE_APPEND);
 	}else{
 		$is_true=0;
-		file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", 'is_false',FILE_APPEND);
 	}
-	// $test = unserialize($_G['cache']['plugin']['geetest']['mod'];
 
 	if ($mygold < $gold) {
 		# 金币不足，不能推单
@@ -52,10 +45,7 @@ $mygold = C::t("#jubei_task#jubei_task_list")->fetch_extcredits($_G['uid']);
 
 # 创建任务
 if($model=='create_task'){
-	if(empty($_G['uid']) && !isset($_G['uid'])) {
-		file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", $_G['uid'],FILE_APPEND);
-        showmessage('to_login', '', array(), array('showmsg' => true, 'login' => 1));
-    }
+
 		if(submitcheck('create_submit')){
 			$get_data = file_get_contents("php://input");
 			parse_str($get_data, $data);
