@@ -131,6 +131,7 @@
 				<item id="sublimt_task_error"><![CDATA[交单档位不正确！！！]]></item>
 				<item id="cancel_task_get_error"><![CDATA[取消任务失败]]></item>
 				<item id="password_error"><![CDATA[密码错误！！！]]></item>
+				<item id="cancel_task_success"><![CDATA[取消任务成功！]]></item>
 			</item>
 			<item id="templatelang">
 				<item id="zhuangtai"><![CDATA[【状态】]]></item>
