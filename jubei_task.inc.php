@@ -24,38 +24,38 @@ $complete_group = unserialize($_G['cache']['plugin']['jubei_task']['complete_gro
 
 // file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", '-my-'.print_r($_G['groupid'],true),FILE_APPEND);
 
-
-$gold = $_G['cache']['plugin']['jubei_task']['gold'];
+// is_login();
+// $gold = $_G['cache']['plugin']['jubei_task']['gold'];
 #我的金币
 
 $mygold = C::t("#jubei_task#jubei_task_list")->fetch_extcredits($_G['uid']);
 
 
-	if (in_array($_G['groupid'], unserialize($_G['cache']['plugin']['jubei_task']['complete_group']))) {
+	if (in_array($_G['member']['groupid'],$complete_group)) {
 		# 允许推单
-		$is_true = 1;
-		// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", 'is_true',FILE_APPEND);
+		$is_true=1;
+		file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", 'is_true',FILE_APPEND);
 	}else{
-		$is_true = 0;
-		// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", 'is_false',FILE_APPEND);
+		$is_true=0;
+		file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", 'is_false',FILE_APPEND);
 	}
 	// $test = unserialize($_G['cache']['plugin']['geetest']['mod'];
 
-	// if ($mygold < $gold) {
-	// 	# 金币不足，不能推单
-	// 	$is_gold = 0;
-	// }else{
-	// 	$is_gold =1;
-	// }
+	if ($mygold < $gold) {
+		# 金币不足，不能推单
+		$is_gold = 0;
+	}else{
+		$is_gold =1;
+	}
 
 
 
 # 创建任务
 if($model=='create_task'){
-	if ($get_group == 0) {
-		showmessage(lang('plugin/jubei_task','password_error'),'plugin.php?id=jubei_task&model=mycomplete');
-		exit;
-	}
+	if(empty($_G['uid']) && !isset($_G['uid'])) {
+		file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", $_G['uid'],FILE_APPEND);
+        showmessage('to_login', '', array(), array('showmsg' => true, 'login' => 1));
+    }
 		if(submitcheck('create_submit')){
 			$get_data = file_get_contents("php://input");
 			parse_str($get_data, $data);
@@ -398,7 +398,7 @@ if($model=='create_task'){
 # 预约任务
 }else if($model=='get_task'){
 	# 预约任务。，提交表单
-	if(submitcheck('get_task_submit') && $is_gold && $is_gold){
+	if(submitcheck('get_task_submit')){
 		$get_data = file_get_contents("php://input");
 		parse_str($get_data, $data);
 
@@ -812,7 +812,7 @@ if($model=='create_task'){
 }
 
 function is_login(){
-	if(!empty($_G['uid']) || isset($_G['uid'])) {
+	if(empty($_G['uid']) && !isset($_G['uid'])) {
         showmessage('to_login', '', array(), array('showmsg' => true, 'login' => 1));
     }
 }

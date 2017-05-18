@@ -7,6 +7,7 @@
                 <img style="float:left;" src="source/plugin/jubei_task/images/dq.png"><span style="float:left;">&nbsp;<a href="plugin.php?id=jubei_task">{lang jubei_task:plugin_name}</a> &gt;&gt; {lang jubei_task:get_task1}</span>
                 <span style="float:right;">&nbsp;<!--{if $_G[lj_tips]}-->$_G[lj_tips]<!--{else}-->$config['gg']<!--{/if}--></span><img style="float:right;" src="source/plugin/jubei_task/images/gg.png">
             </div>
+<!--{if ($is_true == 1 && $is_gold==1)}-->
             <div class="table">
                 <div style="padding: 0 10px 10px;">
                     <table cellspacing="0" cellpadding="4" border="0" width="95%">
@@ -154,6 +155,9 @@
                             </td>
                         </tr>
             </div>
+<!--{else}-->
+    <h1 style="color:red;">级别不够</h1>
+<!--{/if}-->
         </div>
         {template jubei_task:right}
     </div>
