@@ -10,7 +10,7 @@
 <img style="float:left;" src="source/plugin/jubei_task/images/dq.png"><span style="float:left;">&nbsp;<a href="plugin.php?id=jubei_task">{lang jubei_task:plugin_name}</a> &gt;&gt; {lang jubei_task:yuedan}</span>
 <span style="float:right;">&nbsp;<!--{if $_G[lj_tips]}-->$_G[lj_tips]<!--{else}-->$config['gg']<!--{/if}--></span><img style="float:right;" src="source/plugin/jubei_task/images/gg.png">
 </div>
-<!--{if $is_register == 1}-->
+
 
 <div class="table">
 <table width="720" cellspacing="1" cellpadding="0">
@@ -67,9 +67,7 @@ function deleteproject(tid){
 }
 </script>
 
-<!--{else}-->
-    <span style="color: red;">请先注册账号</span>
-<!--{/if}-->
+
 
 {template jubei_task:right}
 </div>

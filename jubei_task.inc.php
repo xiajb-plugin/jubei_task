@@ -11,42 +11,52 @@ if(!defined('IN_DISCUZ')) {
 // require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'common.php';
 global $_G;
 $uid = $_G['uid'];
+
 $complete_num=C::t("#jubei_task#jubei_task_complete")->count_by_uid($uid);
 
 $my_message = C::t("#jubei_task#jubei_task_message")->fetch_by_uid($uid);
 
 $perpage=10;
 $model = daddslashes($_GET['model']);
-$complete_group = $_G['cache']['plugin']['jubei_task']['complete_group'];
+$complete_group = unserialize($_G['cache']['plugin']['jubei_task']['complete_group']);
+
+// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", print_r($complete_group,true),FILE_APPEND);
+
+// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", '-my-'.print_r($_G['groupid'],true),FILE_APPEND);
+
+
 $gold = $_G['cache']['plugin']['jubei_task']['gold'];
 #我的金币
 
 $mygold = C::t("#jubei_task#jubei_task_list")->fetch_extcredits($_G['uid']);
 
 
-if (in_array($_G['groupid'], unserialize($_G['cache']['plugin']['jubei_task']['create_group']))) {
-	# 允许推单
-	$is_true = 1;
-}else{
-	$is_true = 0;
-}
+	if (in_array($_G['groupid'], unserialize($_G['cache']['plugin']['jubei_task']['complete_group']))) {
+		# 允许推单
+		$is_true = 1;
+		// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", 'is_true',FILE_APPEND);
+	}else{
+		$is_true = 0;
+		// file_put_contents("/Users/breaking/www/upload/source/plugin/jubei_task/data.txt", 'is_false',FILE_APPEND);
+	}
+	// $test = unserialize($_G['cache']['plugin']['geetest']['mod'];
 
-if ($mygold < $gold) {
-	# 金币不足，不能推单
-	$is_gold = 0;
-}else{
-	$is_gold =1;
-}
+	// if ($mygold < $gold) {
+	// 	# 金币不足，不能推单
+	// 	$is_gold = 0;
+	// }else{
+	// 	$is_gold =1;
+	// }
 
 
 
 # 创建任务
 if($model=='create_task'){
-
-    // if (($is_true ==1) && ($is_gold== 1)) {
-    	# code...
-		is_login();
-		if(submitcheck('create_submit') && $is_gold && $is_true){
+	if ($get_group == 0) {
+		showmessage(lang('plugin/jubei_task','password_error'),'plugin.php?id=jubei_task&model=mycomplete');
+		exit;
+	}
+		if(submitcheck('create_submit')){
 			$get_data = file_get_contents("php://input");
 			parse_str($get_data, $data);
 
@@ -387,7 +397,6 @@ if($model=='create_task'){
 
 # 预约任务
 }else if($model=='get_task'){
-	is_login();
 	# 预约任务。，提交表单
 	if(submitcheck('get_task_submit') && $is_gold && $is_gold){
 		$get_data = file_get_contents("php://input");
@@ -789,8 +798,6 @@ if($model=='create_task'){
 	include template('jubei_task:user_message');
 
 }else {
-		is_login();
-
 	    $page = daddslashes($_GET['page']);
 		$currpage=$page?$page:1;
 		
@@ -805,10 +812,9 @@ if($model=='create_task'){
 }
 
 function is_login(){
-if(empty($_G['uid'])) {
-                        showmessage('to_login', '', array(), array('showmsg' => true, 'login' => 1));
-                }
-
+	if(!empty($_G['uid']) || isset($_G['uid'])) {
+        showmessage('to_login', '', array(), array('showmsg' => true, 'login' => 1));
+    }
 }
   
 
