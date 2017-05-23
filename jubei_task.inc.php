@@ -658,6 +658,9 @@ if($model=='create_task'){
 			$row[$i]['name'] = iconv('utf-8','GB18030',$row[$i]['name']);
 			$row[$i]['other'] = iconv('utf-8','GB18030',$row[$i]['other']);
 			$row[$i]['money'] = iconv('utf-8','GB18030',$row[$i]['money']);
+			$row[$i]['qq'] = iconv('utf-8','GB18030',$row[$i]['qq']);
+			$row[$i]['zfb'] = iconv('utf-8','GB18030',$row[$i]['zfb']);
+			$row[$i]['tel'] = iconv('utf-8','GB18030',$row[$i]['tel']);
 			$e = array(($i+1),$row[$i]['begintime'],$row[$i]['name'],$row[$i]['tel'],$row[$i]['money'],$row[$i]['zfb'],$row[$i]['qq'],$row[$i]['other']);  
 			// chr(255).chr(254);
 			
