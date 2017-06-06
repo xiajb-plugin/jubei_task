@@ -152,7 +152,7 @@
 				<item id="nav_2"><![CDATA[我要推单]]></item>
 				<item id="nav_3"><![CDATA[我发布的]]></item>
 				<item id="nav_4"><![CDATA[我完成的]]></item>
-				<item id="nav_5"><![CDATA[我预约的]]></item>
+				<item id="nav_5"><![CDATA[我领取的]]></item>
 				<item id="create_1"><![CDATA[单子类型]]></item>
 				<item id="create_2"><![CDATA[限量单]]></item>
 				<item id="create_3"><![CDATA[不限量单]]></item>
@@ -168,9 +168,9 @@
 				<item id="index6"><![CDATA[【详情】]]></item>
 				<item id="index7"><![CDATA[总共]]></item>
 				<item id="index8"><![CDATA[条记录]]></item>
-				<item id="index9"><![CDATA[【限量单-预约】]]></item>
+				<item id="index9"><![CDATA[【限量单-领单】]]></item>
 				<item id="index10"><![CDATA[【非限量单-交单】]]></item>
-				<item id="get_task1"><![CDATA[我要预约]]></item>
+				<item id="get_task1"><![CDATA[我要领取]]></item>
 				<item id="get_task2"><![CDATA[联系QQ]]></item>
 				<item id="get_task3"><![CDATA[档位]]></item>
 				<item id="get_task4"><![CDATA[剩余名额]]></item>
